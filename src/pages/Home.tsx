@@ -6,7 +6,7 @@ import { bundles, movies, foods, snacks, drinks } from '../data'
 import type { AnyCard, SwipeMode } from '../types'
 
 const MODES: { mode: SwipeMode; label: string; icon: string; desc: string }[] = [
-  { mode: 'bundle', label: 'Full Date Night', icon: '🌙', desc: 'Food + movie + snack + drink' },
+  { mode: 'bundle', label: 'Full Date Night', icon: '🌙', desc: 'Food, then movie, then snack, then drink' },
   { mode: 'food', label: 'Food', icon: '🍽️', desc: 'Restaurants, takeout & recipes' },
   { mode: 'movie', label: 'Movies & Shows', icon: '🎬', desc: 'Something to watch together' },
   { mode: 'snack', label: 'Snacks', icon: '🍿', desc: 'Sweet, salty, or spicy' },
@@ -45,7 +45,9 @@ export default function Home() {
         {MODES.map((m) => (
           <button
             key={m.mode}
-            onClick={() => navigate(`/swipe/${m.mode}`)}
+            onClick={() =>
+              navigate(m.mode === 'bundle' ? '/full-date-night' : `/swipe/${m.mode}`)
+            }
             className="flex flex-col items-start gap-1 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-transform active:scale-[0.97]"
           >
             <span className="text-2xl">{m.icon}</span>

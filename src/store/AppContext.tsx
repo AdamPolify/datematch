@@ -101,6 +101,7 @@ interface AppContextValue extends PersistedState {
   removeShoppingItem: (id: string) => void
   clearMatches: () => void
   resetSwipesForKind: (kind: AnyCard['kind']) => void
+  registerMatch: (card: AnyCard) => Match
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
@@ -327,6 +328,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
           ...s,
           swipes: s.swipes.filter((sw) => sw.cardKind !== kind),
         })),
+
+      registerMatch: (card) => {
+        let result: Match = {
+          id: `match-${card.id}`,
+          card,
+          matchedAt: Date.now(),
+        }
+        setState((s) => {
+          const existing = s.matches.find((m) => m.card.id === card.id)
+          if (existing) {
+            result = existing
+            return s
+          }
+          result = { id: `match-${card.id}-${Date.now()}`, card, matchedAt: Date.now() }
+          return { ...s, matches: [result, ...s.matches] }
+        })
+        return result
+      },
     }
   }, [state])
 

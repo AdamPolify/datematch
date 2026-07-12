@@ -5,6 +5,7 @@ import BottomNav from './components/BottomNav'
 import Onboarding from './pages/Onboarding'
 import Home from './pages/Home'
 import Swipe from './pages/Swipe'
+import FullDateNight from './pages/FullDateNight'
 import Matches from './pages/Matches'
 import Plan from './pages/Plan'
 import Shopping from './pages/Shopping'
@@ -43,6 +44,14 @@ function Shell() {
             element={
               <Gate>
                 <Swipe />
+              </Gate>
+            }
+          />
+          <Route
+            path="/full-date-night"
+            element={
+              <Gate>
+                <FullDateNight />
               </Gate>
             }
           />

@@ -50,8 +50,7 @@ export default function Swipe() {
   const deck = useMemo(() => {
     const sorted = sortByPreferenceFit(sourceCards, prefs)
     return sorted.filter((c) => !hasSwiped(c.id, activePartner))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sourceCards, prefs, activePartner, profile])
+  }, [sourceCards, prefs, activePartner, hasSwiped])
 
   function handleSwipe(card: AnyCard, direction: 'left' | 'right') {
     const match = swipe(card, direction)
