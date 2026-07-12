@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../store/AppContext'
 import { Card } from '../components/ui'
 import MatchOverlay from '../components/MatchOverlay'
+import CardArt from '../components/CardArt'
 import type { Match } from '../types'
 
 export default function Matches() {
@@ -29,7 +30,12 @@ export default function Matches() {
               onClick={() => setSelected(match)}
               className="flex w-full items-center gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3 text-left"
             >
-              <span className="text-3xl">{match.card.image}</span>
+              <CardArt
+                image={match.card.image}
+                alt={match.card.title}
+                imgClassName="h-16 w-12 shrink-0 rounded-md object-cover"
+                emojiClassName="shrink-0 text-3xl"
+              />
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold text-[var(--color-ink)]">
                   {match.card.title}

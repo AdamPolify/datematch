@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
 import { Card, SectionTitle } from '../components/ui'
 import PartnerSwitcher from '../components/PartnerSwitcher'
+import CardArt from '../components/CardArt'
 import { bundles, movies, foods, snacks, drinks } from '../data'
 import type { AnyCard, SwipeMode } from '../types'
 
@@ -73,7 +74,12 @@ export default function Home() {
                 onClick={() => navigate('/matches')}
                 className="flex w-32 shrink-0 flex-col items-center gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3"
               >
-                <span className="text-3xl">{match.card.image}</span>
+                <CardArt
+                  image={match.card.image}
+                  alt={match.card.title}
+                  imgClassName="h-20 w-16 rounded-lg object-cover"
+                  emojiClassName="text-3xl"
+                />
                 <span className="line-clamp-2 text-center text-xs font-medium text-[var(--color-ink)]">
                   {match.card.title}
                 </span>
@@ -96,7 +102,12 @@ export default function Home() {
                 key={card.id}
                 className="flex flex-col items-center gap-1 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3"
               >
-                <span className="text-2xl">{card.image}</span>
+                <CardArt
+                  image={card.image}
+                  alt={card.title}
+                  imgClassName="h-16 w-12 rounded-md object-cover"
+                  emojiClassName="text-2xl"
+                />
                 <span className="line-clamp-2 text-center text-[11px] font-medium text-[var(--color-ink)]">
                   {card.title}
                 </span>

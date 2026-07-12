@@ -1,0 +1,201 @@
+// Fetches trending + top-rated movies from TMDB and writes src/data/movies.ts.
+// Regenerate with: TMDB_API_KEY=xxx npm run fetch:movies
+import { writeFile } from 'node:fs/promises'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const API_KEY = process.env.TMDB_API_KEY
+if (!API_KEY) {
+  console.error('Missing TMDB_API_KEY environment variable.')
+  process.exit(1)
+}
+
+const BASE = 'https://api.themoviedb.org/3'
+const IMG = 'https://image.tmdb.org/t/p/w500'
+const REGION = 'US'
+const TARGET_COUNT = 18
+
+// TMDB genre id -> our Genre enum
+const GENRE_MAP = {
+  28: ['action'],
+  12: ['action'],
+  16: ['animated'],
+  35: ['comedy'],
+  80: ['thriller'],
+  99: ['documentary'],
+  18: ['drama'],
+  10751: ['animated'],
+  14: ['sci-fi'],
+  36: ['drama'],
+  27: ['horror'],
+  10402: ['drama'],
+  9648: ['thriller'],
+  10749: ['romance'],
+  878: ['sci-fi'],
+  10770: ['drama'],
+  53: ['thriller'],
+  10752: ['drama'],
+  37: ['action'],
+}
+
+// TMDB genre id -> our Mood enum
+const MOOD_MAP = {
+  28: ['spontaneous'],
+  12: ['spontaneous'],
+  16: ['cozy'],
+  35: ['funny'],
+  80: ['scary'],
+  99: ['cozy', 'nostalgic'],
+  18: ['fancy', 'nostalgic'],
+  10751: ['cozy'],
+  14: ['spontaneous'],
+  36: ['nostalgic'],
+  27: ['scary'],
+  10402: ['fancy'],
+  9648: ['scary'],
+  10749: ['romantic'],
+  878: ['spontaneous'],
+  10770: ['cozy'],
+  53: ['spontaneous'],
+  10752: ['nostalgic'],
+  37: ['spontaneous'],
+}
+
+// TMDB watch-provider id (US flatrate) -> our StreamingService enum
+const PROVIDER_MAP = {
+  8: 'Netflix',
+  9: 'Prime Video',
+  119: 'Prime Video',
+  337: 'Disney+',
+  1899: 'HBO Max',
+  384: 'HBO Max',
+  350: 'Apple TV+',
+  531: 'Paramount+',
+  15: 'Hulu',
+}
+
+async function tmdb(pathname, params = {}) {
+  const url = new URL(BASE + pathname)
+  url.searchParams.set('api_key', API_KEY)
+  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v)
+  const res = await fetch(url)
+  if (!res.ok) {
+    throw new Error(`TMDB ${pathname} failed: ${res.status} ${await res.text()}`)
+  }
+  return res.json()
+}
+
+function mapList(map, genreIds, fallback) {
+  const set = new Set()
+  for (const id of genreIds) {
+    for (const value of map[id] ?? []) set.add(value)
+  }
+  return set.size > 0 ? [...set].slice(0, 3) : fallback
+}
+
+function reasonFor(source) {
+  return source === 'trending'
+    ? 'Trending everywhere right now'
+    : 'One of the best-reviewed picks available'
+}
+
+async function buildCandidateList() {
+  const [trending, topRated] = await Promise.all([
+    tmdb('/trending/movie/week'),
+    tmdb('/movie/top_rated', { region: REGION }),
+  ])
+  const tagged = [
+    ...trending.results.map((r) => ({ ...r, __source: 'trending' })),
+    ...topRated.results.map((r) => ({ ...r, __source: 'top_rated' })),
+  ]
+  const seen = new Set()
+  const candidates = []
+  for (const m of tagged) {
+    if (seen.has(m.id)) continue
+    seen.add(m.id)
+    candidates.push(m)
+  }
+  return candidates
+}
+
+async function enrich(movie) {
+  const detail = await tmdb(`/movie/${movie.id}`, {
+    append_to_response: 'credits,release_dates,watch/providers',
+  })
+
+  const providers = detail['watch/providers']?.results?.[REGION]?.flatrate ?? []
+  let platform = null
+  for (const p of providers) {
+    if (PROVIDER_MAP[p.provider_id]) {
+      platform = PROVIDER_MAP[p.provider_id]
+      break
+    }
+  }
+  if (!platform) return null
+
+  const usRelease = detail.release_dates?.results?.find(
+    (r) => r.iso_3166_1 === REGION,
+  )
+  const cert = usRelease?.release_dates?.find((d) => d.certification)
+    ?.certification
+  const cast = (detail.credits?.cast ?? []).slice(0, 3).map((c) => c.name)
+  const genreIds = detail.genres?.map((g) => g.id) ?? []
+
+  return {
+    id: `movie-tmdb-${detail.id}`,
+    kind: 'movie',
+    title: detail.title,
+    image: detail.poster_path ? `${IMG}${detail.poster_path}` : '🎬',
+    genre: mapList(GENRE_MAP, genreIds, ['drama']),
+    runtimeMinutes: detail.runtime || 100,
+    platform,
+    rating: cert || 'NR',
+    mood: mapList(MOOD_MAP, genreIds, ['cozy']),
+    reason: reasonFor(movie.__source),
+    synopsis: (detail.overview || '').slice(0, 220),
+    cast: cast.length > 0 ? cast : ['Full ensemble cast'],
+  }
+}
+
+async function main() {
+  const candidates = await buildCandidateList()
+  const results = []
+
+  for (const c of candidates) {
+    if (results.length >= TARGET_COUNT) break
+    try {
+      const card = await enrich(c)
+      if (card) results.push(card)
+    } catch (err) {
+      console.warn(`Skipping "${c.title}": ${err.message}`)
+    }
+    await new Promise((r) => setTimeout(r, 150))
+  }
+
+  if (results.length === 0) {
+    console.error('No movies fetched — check API key / network.')
+    process.exit(1)
+  }
+
+  const outPath = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '..',
+    'src',
+    'data',
+    'movies.ts',
+  )
+
+  const body = `// Generated by scripts/fetch-movies.mjs — do not hand-edit.
+// Regenerate with: TMDB_API_KEY=xxx npm run fetch:movies
+import type { MovieCard } from '../types'
+
+export const movies: MovieCard[] = ${JSON.stringify(results, null, 2)}
+`
+  await writeFile(outPath, body)
+  console.log(`Wrote ${results.length} movies to ${outPath}`)
+}
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

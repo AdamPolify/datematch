@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
 
 permissions:
   contents: read
@@ -24,6 +26,12 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run fetch:movies
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      - run: npm run fetch:images
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
       - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

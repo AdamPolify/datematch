@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { AnyCard, Match } from '../types'
 import { useApp } from '../store/AppContext'
 import { PrimaryButton, SecondaryButton } from './ui'
+import CardArt from './CardArt'
 
 function isBundle(card: AnyCard): card is Extract<AnyCard, { kind: 'bundle' }> {
   return card.kind === 'bundle'
@@ -78,7 +79,14 @@ export default function MatchOverlay({
         </p>
 
         <div className="mb-5 rounded-2xl bg-[var(--color-surface)] p-5">
-          <div className="mb-2 text-6xl">{card.image}</div>
+          <div className="mb-2 flex justify-center">
+            <CardArt
+              image={card.image}
+              alt={card.title}
+              imgClassName="h-36 w-28 rounded-xl object-cover shadow-lg"
+              emojiClassName="text-6xl"
+            />
+          </div>
           <h3 className="text-xl font-bold text-[var(--color-ink)]">
             {card.title}
           </h3>

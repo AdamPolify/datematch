@@ -8,6 +8,7 @@ import MatchOverlay from '../components/MatchOverlay'
 import TopBar from '../components/TopBar'
 import PartnerSwitcher from '../components/PartnerSwitcher'
 import { PrimaryButton, SecondaryButton } from '../components/ui'
+import CardArt from '../components/CardArt'
 import type {
   AnyCard,
   BundleCard,
@@ -188,7 +189,12 @@ export default function FullDateNight() {
 
       {justPicked && (
         <div className="fixed inset-0 z-50 mx-auto flex max-w-[480px] flex-col items-center justify-center bg-black/70 px-6 backdrop-blur-sm">
-          <div className="text-6xl">{justPicked.image}</div>
+          <CardArt
+            image={justPicked.image}
+            alt={justPicked.title}
+            imgClassName="h-36 w-28 rounded-xl object-cover shadow-lg"
+            emojiClassName="text-6xl"
+          />
           <p className="mt-3 text-lg font-bold text-white">{justPicked.title}</p>
           <p className="mt-1 text-sm text-white/70">
             {stageIndex < STAGES.length - 1

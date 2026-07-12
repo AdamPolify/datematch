@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
 import TopBar from '../components/TopBar'
 import { Card, SectionTitle, SecondaryButton } from '../components/ui'
+import CardArt from '../components/CardArt'
 
 function prepSteps(cookAtHome: boolean): string[] {
   const steps = ['Set up snacks and drinks on the coffee table']
@@ -56,7 +57,12 @@ export default function Plan() {
         <SectionTitle>The lineup</SectionTitle>
         <div className="mb-6 grid grid-cols-2 gap-3">
           <Card className="flex items-center gap-2">
-            <span className="text-2xl">{bundle.movie.image}</span>
+            <CardArt
+              image={bundle.movie.image}
+              alt={bundle.movie.title}
+              imgClassName="h-12 w-9 shrink-0 rounded object-cover"
+              emojiClassName="shrink-0 text-2xl"
+            />
             <div className="min-w-0">
               <p className="text-[10px] uppercase text-[var(--color-muted)]">Watch</p>
               <p className="truncate text-sm font-medium">{bundle.movie.title}</p>

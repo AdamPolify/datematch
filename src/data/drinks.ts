@@ -1,6 +1,7 @@
 import type { DrinkCard } from '../types'
+import { photosById } from './photos'
 
-export const drinks: DrinkCard[] = [
+const rawDrinks: DrinkCard[] = [
   {
     id: 'drink-1',
     kind: 'drink',
@@ -165,3 +166,8 @@ export const drinks: DrinkCard[] = [
     ],
   },
 ]
+
+export const drinks: DrinkCard[] = rawDrinks.map((d) => ({
+  ...d,
+  image: photosById[d.id] ?? d.image,
+}))

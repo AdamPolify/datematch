@@ -1,5 +1,6 @@
 import type { AnyCard } from '../types'
 import { MOOD_EMOJI } from '../data/options'
+import CardArt from './CardArt'
 
 function KindBadge({ kind }: { kind: AnyCard['kind'] }) {
   const labels: Record<AnyCard['kind'], string> = {
@@ -88,7 +89,11 @@ export function DateCardFront({ card }: { card: AnyCard }) {
       </div>
 
       <div className="flex flex-1 flex-col items-center justify-center gap-3 py-4">
-        <div className="text-8xl">{card.image}</div>
+        <CardArt
+          image={card.image}
+          alt={card.title}
+          imgClassName="h-48 w-36 rounded-2xl object-cover shadow-xl"
+        />
         <h2 className="text-center text-2xl font-bold leading-tight">
           {card.title}
         </h2>
@@ -268,16 +273,22 @@ export function DateCardBack({ card }: { card: AnyCard }) {
                 { label: 'Snack', item: card.snack },
                 { label: 'Drink', item: card.drink },
               ].map(({ label, item }) => (
-                <div key={label} className="rounded-xl bg-white/5 p-2.5">
-                  <p className="text-[10px] uppercase tracking-wide text-white/50">
-                    {label}
-                  </p>
-                  <p className="text-sm font-medium">
-                    {item.image} {item.title}
-                  </p>
-                  <p className="mt-0.5 text-xs italic text-white/60">
-                    "{item.reason}"
-                  </p>
+                <div key={label} className="flex items-center gap-2.5 rounded-xl bg-white/5 p-2.5">
+                  <CardArt
+                    image={item.image}
+                    alt={item.title}
+                    imgClassName="h-10 w-8 shrink-0 rounded object-cover"
+                    emojiClassName="shrink-0 text-xl"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-wide text-white/50">
+                      {label}
+                    </p>
+                    <p className="text-sm font-medium">{item.title}</p>
+                    <p className="mt-0.5 text-xs italic text-white/60">
+                      "{item.reason}"
+                    </p>
+                  </div>
                 </div>
               ))}
             </>
