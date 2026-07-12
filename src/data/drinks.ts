@@ -11,6 +11,8 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['romantic', 'fancy', 'cozy'],
     reason: 'Pairs with pasta night',
+    ingredients: ['A bottle of red wine you both like'],
+    steps: ['Uncork and let it breathe for a few minutes', 'Pour and enjoy'],
   },
   {
     id: 'drink-2',
@@ -22,6 +24,13 @@ export const drinks: DrinkCard[] = [
     difficulty: 'medium',
     mood: ['spontaneous', 'funny'],
     reason: 'Matches the heat of your taco night',
+    ingredients: ['Tequila', 'Lime juice', 'Triple sec', 'Jalapeño slices', 'Tajín rim'],
+    steps: [
+      'Rim glasses with lime juice and Tajín',
+      'Muddle a jalapeño slice in the shaker',
+      'Add tequila, lime juice, triple sec, and ice — shake well',
+      'Strain over fresh ice and garnish with jalapeño',
+    ],
   },
   {
     id: 'drink-3',
@@ -33,6 +42,13 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['cozy', 'romantic'],
     reason: 'A sweet, alcohol-free option for a cozy night',
+    ingredients: ['Mixed berries', 'Soda water', 'Lime juice', 'Simple syrup'],
+    steps: [
+      'Muddle berries at the bottom of a glass',
+      'Add lime juice and a splash of simple syrup',
+      'Top with soda water and ice',
+      'Stir gently and garnish with a berry',
+    ],
   },
   {
     id: 'drink-4',
@@ -44,6 +60,12 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['lazy', 'nostalgic'],
     reason: 'Diner-style comfort to go with your burgers',
+    ingredients: ['Vanilla ice cream', 'Whole milk', 'Whipped cream'],
+    steps: [
+      'Blend ice cream and milk until smooth',
+      'Pour into two glasses',
+      'Top with whipped cream and two straws',
+    ],
   },
   {
     id: 'drink-5',
@@ -55,6 +77,13 @@ export const drinks: DrinkCard[] = [
     difficulty: 'medium',
     mood: ['fancy', 'romantic'],
     reason: 'A classic cocktail for a dressed-up night in',
+    ingredients: ['Bourbon', 'Sugar cube', 'Angostura bitters', 'Orange peel'],
+    steps: [
+      'Muddle a sugar cube with bitters in the glass',
+      'Add a large ice cube and bourbon',
+      'Stir until well chilled',
+      'Express an orange peel over the top and drop it in',
+    ],
   },
   {
     id: 'drink-6',
@@ -66,6 +95,8 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['lazy', 'scary'],
     reason: 'Simple and classic for movie night',
+    ingredients: ['Cola', 'Ice', 'Lime wedge (optional)'],
+    steps: ['Fill a glass with ice', 'Pour cola over the top', 'Add a lime wedge if you like'],
   },
   {
     id: 'drink-7',
@@ -77,6 +108,13 @@ export const drinks: DrinkCard[] = [
     difficulty: 'medium',
     mood: ['fancy', 'spontaneous'],
     reason: 'Feels celebratory without the alcohol',
+    ingredients: ['Sparkling grape juice', 'Fresh mint', 'Lime juice', 'Pomegranate seeds'],
+    steps: [
+      'Muddle mint gently in the bottom of a champagne flute',
+      'Add a splash of lime juice',
+      'Top slowly with chilled sparkling grape juice',
+      'Garnish with pomegranate seeds',
+    ],
   },
   {
     id: 'drink-8',
@@ -88,6 +126,12 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['cozy', 'nostalgic'],
     reason: 'Warm and calming for a slow night in',
+    ingredients: ['Chai tea bags or loose chai', 'Milk', 'Honey'],
+    steps: [
+      'Steep chai in hot water for 5 minutes',
+      'Warm milk and combine with the tea',
+      'Sweeten with honey to taste',
+    ],
   },
   {
     id: 'drink-9',
@@ -99,6 +143,8 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['spontaneous', 'funny'],
     reason: 'Casual pick for a laid-back action night',
+    ingredients: ['Two cold craft IPAs'],
+    steps: ['Chill the cans or bottles ahead of time', 'Pour into glasses if you are feeling fancy'],
   },
   {
     id: 'drink-10',
@@ -110,5 +156,12 @@ export const drinks: DrinkCard[] = [
     difficulty: 'easy',
     mood: ['lazy', 'cozy'],
     reason: 'Light and refreshing for a relaxed vibe',
+    ingredients: ['Matcha powder', 'Cold milk', 'Simple syrup', 'Ice'],
+    steps: [
+      'Whisk matcha powder with a splash of hot water until smooth',
+      'Fill a glass with ice and pour in cold milk',
+      'Add the matcha and a touch of simple syrup',
+      'Stir together',
+    ],
   },
 ]

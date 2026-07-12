@@ -12,6 +12,9 @@ export const movies: MovieCard[] = [
     rating: 'PG-13',
     mood: ['romantic', 'cozy'],
     reason: 'You both like rom-coms and it just landed on Netflix',
+    synopsis:
+      'Two strangers keep bumping into each other across one chaotic Parisian night and slowly realize they might not want to stop.',
+    cast: ['Camille Rousseau', 'Theo March', 'Priya Anand'],
   },
   {
     id: 'movie-2',
@@ -24,6 +27,9 @@ export const movies: MovieCard[] = [
     rating: 'R',
     mood: ['scary'],
     reason: 'A top-rated thriller you both saved last week',
+    synopsis:
+      'A couple renovating a remote farmhouse start hearing the same three knocks every night at 3am — and the house remembers why.',
+    cast: ['Dana Whitlock', 'Marcus Ide', 'Ruth Okafor'],
   },
   {
     id: 'movie-3',
@@ -36,6 +42,9 @@ export const movies: MovieCard[] = [
     rating: 'PG-13',
     mood: ['funny', 'spontaneous'],
     reason: 'Laugh-out-loud pick that matches your funny mood',
+    synopsis:
+      'A wrong turn, a stolen golf cart, and a wedding they were never invited to — one weekend spirals into the best worst trip of their lives.',
+    cast: ['Jules Ferreira', 'Noah Kim', 'Wanda Price'],
   },
   {
     id: 'movie-4',
@@ -48,6 +57,9 @@ export const movies: MovieCard[] = [
     rating: 'PG-13',
     mood: ['nostalgic', 'cozy'],
     reason: 'A sci-fi classic feel, perfect for a nostalgic night',
+    synopsis:
+      'A retired signal engineer picks up a transmission from a satellite that was decommissioned decades ago — and it is calling her by name.',
+    cast: ['Elena Vasquez', 'Robert Hale', 'Tomás Bright'],
   },
   {
     id: 'movie-5',
@@ -60,6 +72,9 @@ export const movies: MovieCard[] = [
     rating: 'TV-MA',
     mood: ['funny', 'lazy'],
     reason: 'Short and hilarious — easy watch for a lazy night',
+    synopsis:
+      'One hour, one mic, zero filter — a rapid-fire special about surviving your thirties, family group chats, and bad first dates.',
+    cast: ['Devon Okoye'],
   },
   {
     id: 'movie-6',
@@ -72,6 +87,9 @@ export const movies: MovieCard[] = [
     rating: 'R',
     mood: ['fancy', 'romantic'],
     reason: 'An elegant slow-burn romance for a fancy night in',
+    synopsis:
+      'A sommelier and a chef circle each other over three Michelin dinners a year apart, never quite saying what they mean.',
+    cast: ['Isabelle Cros', 'Adrian Voss'],
   },
   {
     id: 'movie-7',
@@ -84,6 +102,9 @@ export const movies: MovieCard[] = [
     rating: 'G',
     mood: ['cozy', 'nostalgic'],
     reason: 'A calming documentary you both bookmarked',
+    synopsis:
+      'A quiet descent into the ocean midnight zone, following bioluminescent creatures no camera crew had ever filmed alive before.',
+    cast: ['Narrated by Helena Storm'],
   },
   {
     id: 'movie-8',
@@ -96,6 +117,9 @@ export const movies: MovieCard[] = [
     rating: 'PG-13',
     mood: ['spontaneous'],
     reason: 'High-octane action for when you both want a rush',
+    synopsis:
+      'A disavowed operative has 14 hours to stop a cargo ship from reaching port — and every ally she calls is already compromised.',
+    cast: ['Rae Solano', 'Kenji Osei', 'Bill Marchetti'],
   },
   {
     id: 'movie-9',
@@ -108,6 +132,9 @@ export const movies: MovieCard[] = [
     rating: 'R',
     mood: ['scary', 'spontaneous'],
     reason: 'Rated one of the scariest new releases this month',
+    synopsis:
+      "A woman clearing out her late grandmother's attic finds a locked trunk — and every night it stays unopened, something moves closer.",
+    cast: ['Faye Lindqvist', 'Owen Baptiste'],
   },
   {
     id: 'movie-10',
@@ -120,6 +147,9 @@ export const movies: MovieCard[] = [
     rating: 'PG',
     mood: ['cozy', 'nostalgic'],
     reason: 'A gentle animated story, great comfort rewatch energy',
+    synopsis:
+      'A girl who folds a thousand paper cranes to bring her sister home discovers each one holds a memory she forgot she had.',
+    cast: ['Voiced by Mei Tanaka', 'Voiced by Sam Okafor'],
   },
   {
     id: 'movie-11',
@@ -132,6 +162,9 @@ export const movies: MovieCard[] = [
     rating: 'TV-14',
     mood: ['lazy', 'cozy'],
     reason: 'Your all-time comfort rewatch, ready when you are',
+    synopsis:
+      'The gang is back for another disastrous team-building day, this time with a rented petting zoo and a fire code violation.',
+    cast: ['Full ensemble cast'],
   },
   {
     id: 'movie-12',
@@ -144,5 +177,8 @@ export const movies: MovieCard[] = [
     rating: 'PG-13',
     mood: ['fancy', 'romantic'],
     reason: 'Award-buzz romance perfect for a dressed-up date night',
+    synopsis:
+      'A concert violinist facing a career-ending injury has one final tour left — and the conductor who broke her heart is leading it.',
+    cast: ['Anastasia Volkov', 'Julian Ferro'],
   },
 ]

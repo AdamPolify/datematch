@@ -13,6 +13,19 @@ export const foods: FoodCard[] = [
     dietaryTags: ['vegetarian'],
     mood: ['cozy', 'romantic'],
     reason: 'Easy, comforting, and you already have the ingredients',
+    ingredients: [
+      'Spaghetti or linguine',
+      'Butter and olive oil',
+      'Lemon zest and juice',
+      'Parmesan',
+      'Black pepper',
+    ],
+    steps: [
+      'Boil pasta until just shy of al dente, saving a cup of the water',
+      'Melt butter and oil in a pan, add lemon zest and juice',
+      'Toss the pasta in the pan with a splash of pasta water',
+      'Finish with grated parmesan and cracked black pepper',
+    ],
   },
   {
     id: 'food-2',
@@ -26,6 +39,18 @@ export const foods: FoodCard[] = [
     dietaryTags: [],
     mood: ['fancy', 'spontaneous'],
     reason: 'Your favorite sushi spot has a couples platter tonight',
+    ingredients: [
+      'Chef’s choice nigiri and rolls',
+      'Miso soup for two',
+      'Edamame',
+      'Soy sauce, wasabi, pickled ginger',
+    ],
+    steps: [
+      'Open your delivery app and find the couples platter',
+      'Add miso soup and edamame as sides',
+      'Track your order — about 40 minutes out',
+      'Plate it up and pour the sake',
+    ],
   },
   {
     id: 'food-3',
@@ -39,6 +64,19 @@ export const foods: FoodCard[] = [
     dietaryTags: ['gluten-free'],
     mood: ['spontaneous', 'funny'],
     reason: 'Quick, fun to make together, low effort',
+    ingredients: [
+      'Corn tortillas',
+      'Seasoned ground beef or grilled veggies',
+      'Diced onion and cilantro',
+      'Lime wedges',
+      'Salsa verde',
+    ],
+    steps: [
+      'Warm the tortillas directly over a burner flame or dry pan',
+      'Cook the filling with taco seasoning until browned',
+      'Set up a build-your-own taco station',
+      'Top with onion, cilantro, salsa, and a squeeze of lime',
+    ],
   },
   {
     id: 'food-4',
@@ -52,6 +90,19 @@ export const foods: FoodCard[] = [
     dietaryTags: [],
     mood: ['lazy', 'funny'],
     reason: 'Simple comfort food for a lazy night in',
+    ingredients: [
+      'Ground beef',
+      'Burger buns',
+      'American cheese',
+      'Lettuce, tomato, pickles',
+      'Ketchup and mustard',
+    ],
+    steps: [
+      'Form loose beef balls and smash them flat on a hot pan',
+      'Season with salt and pepper, flip once, add cheese',
+      'Toast the buns in the leftover drippings',
+      'Stack with your favorite toppings',
+    ],
   },
   {
     id: 'food-5',
@@ -65,6 +116,18 @@ export const foods: FoodCard[] = [
     dietaryTags: ['dairy-free'],
     mood: ['cozy', 'spontaneous'],
     reason: 'Nearby Thai spot with fast pickup, great reviews',
+    ingredients: [
+      'Rice noodles with shrimp or tofu',
+      'Bean sprouts and scallions',
+      'Crushed peanuts',
+      'Lime wedge',
+    ],
+    steps: [
+      'Call in or order ahead on the app',
+      'Swing by for pickup — ready in about 20 minutes',
+      'Ask for extra peanuts and lime on the side',
+      'Box it up for the couch',
+    ],
   },
   {
     id: 'food-6',
@@ -78,6 +141,18 @@ export const foods: FoodCard[] = [
     dietaryTags: ['gluten-free'],
     mood: ['cozy', 'nostalgic'],
     reason: 'Rich, warming, matches your cozy night mood',
+    ingredients: [
+      'Butter chicken with basmati rice',
+      'Garlic naan',
+      'Raita',
+      'Mango lassi (optional)',
+    ],
+    steps: [
+      'Order from your go-to Indian spot',
+      'Add extra naan — you will want it',
+      'Let it arrive hot and serve straight from the containers',
+      'Save leftovers, it is better the next day',
+    ],
   },
   {
     id: 'food-7',
@@ -91,6 +166,17 @@ export const foods: FoodCard[] = [
     dietaryTags: ['vegetarian'],
     mood: ['lazy', 'scary'],
     reason: 'Classic movie-night pairing, ready in 35 minutes',
+    ingredients: [
+      'One large wood-fired pizza',
+      'Garlic knots',
+      'Chili flakes and parmesan packets',
+    ],
+    steps: [
+      'Order your usual — or try a new topping combo',
+      'Track delivery so it arrives right as the movie starts',
+      'Set out chili flakes and extra parmesan',
+      'Eat straight from the box, no judgment',
+    ],
   },
   {
     id: 'food-8',
@@ -104,6 +190,19 @@ export const foods: FoodCard[] = [
     dietaryTags: ['vegetarian', 'gluten-free'],
     mood: ['fancy', 'romantic'],
     reason: 'A slow, romantic cook-together recipe',
+    ingredients: [
+      'Arborio rice',
+      'Mixed mushrooms',
+      'Warm vegetable stock',
+      'White wine',
+      'Parmesan and butter',
+    ],
+    steps: [
+      'Sauté mushrooms until golden, set aside',
+      'Toast the rice, then deglaze with white wine',
+      'Add warm stock one ladle at a time, stirring constantly',
+      'Fold in mushrooms, parmesan, and butter off the heat',
+    ],
   },
   {
     id: 'food-9',
@@ -117,6 +216,18 @@ export const foods: FoodCard[] = [
     dietaryTags: ['gluten-free'],
     mood: ['fancy', 'romantic'],
     reason: 'Special occasion energy without leaving the house',
+    ingredients: [
+      'Two ribeye steaks',
+      'Butter, garlic, and thyme',
+      'Flaky salt',
+      'Roasted potatoes or greens',
+    ],
+    steps: [
+      'Bring steaks to room temperature and salt generously',
+      'Sear hard on both sides in a screaming-hot pan',
+      'Baste with butter, garlic, and thyme',
+      'Rest for 5 minutes before slicing',
+    ],
   },
   {
     id: 'food-10',
@@ -130,6 +241,18 @@ export const foods: FoodCard[] = [
     dietaryTags: ['vegetarian', 'vegan'],
     mood: ['cozy', 'lazy'],
     reason: 'Assemble in minutes, perfect for grazing during a movie',
+    ingredients: [
+      'Hummus and baba ganoush',
+      'Pita and flatbread',
+      'Olives, feta, cucumbers',
+      'Cherry tomatoes',
+    ],
+    steps: [
+      'Arrange dips in small bowls on a large board',
+      'Warm the pita and slice into wedges',
+      'Scatter olives, feta, and vegetables around the board',
+      'Graze straight from the board during the movie',
+    ],
   },
   {
     id: 'food-11',
@@ -143,6 +266,17 @@ export const foods: FoodCard[] = [
     dietaryTags: [],
     mood: ['cozy', 'nostalgic'],
     reason: 'Comfort food you both keep coming back to',
+    ingredients: [
+      'Steamed and pan-fried dumpling assortment',
+      'Chili oil',
+      'Black vinegar dipping sauce',
+    ],
+    steps: [
+      'Order the usual assortment from your favorite spot',
+      'Pick up on the way home while it is hot',
+      'Mix your own dipping sauce with chili oil and vinegar',
+      'Eat straight from the containers, chopsticks only',
+    ],
   },
   {
     id: 'food-12',
@@ -156,5 +290,17 @@ export const foods: FoodCard[] = [
     dietaryTags: ['vegetarian'],
     mood: ['fancy', 'cozy'],
     reason: 'Elegant, slow-cooked, and pairs well with red wine',
+    ingredients: [
+      'Yellow onions, thinly sliced',
+      'Vegetable stock',
+      'Baguette slices',
+      'Gruyère cheese',
+    ],
+    steps: [
+      'Slowly caramelize the onions in butter for 40 minutes',
+      'Add stock and simmer until deeply flavored',
+      'Ladle into oven-safe bowls, top with baguette and cheese',
+      'Broil until bubbling and golden',
+    ],
   },
 ]

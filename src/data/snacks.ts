@@ -11,6 +11,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with horror movies',
     mood: ['scary', 'lazy'],
     reason: 'Good with horror movies',
+    ingredients: ['Popcorn kernels', 'Butter', 'Salt'],
+    steps: [
+      'Pop kernels on the stovetop or in an air popper',
+      'Melt butter and drizzle over in two passes',
+      'Salt generously and toss',
+    ],
   },
   {
     id: 'snack-2',
@@ -22,6 +28,13 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with romance movies',
     mood: ['romantic', 'fancy'],
     reason: 'Classic romantic-night pairing',
+    ingredients: ['Fresh strawberries', 'Dark chocolate', 'Sea salt (optional)'],
+    steps: [
+      'Wash and thoroughly dry the strawberries',
+      'Melt chocolate in short microwave bursts, stirring between',
+      'Dip each strawberry two-thirds of the way and set on parchment',
+      'Chill for 15 minutes until set',
+    ],
   },
   {
     id: 'snack-3',
@@ -33,6 +46,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with comedies',
     mood: ['funny', 'spontaneous'],
     reason: 'Fun, sharable, and a little chaotic — like your comedy pick',
+    ingredients: ['Sour gummy candy of choice'],
+    steps: [
+      'Grab a bag from the store on your way home',
+      'Pour into a shared bowl',
+      'Compete over who can handle the sourest piece',
+    ],
   },
   {
     id: 'snack-4',
@@ -44,6 +63,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with action movies',
     mood: ['spontaneous', 'funny'],
     reason: 'Adds some heat to match the on-screen action',
+    ingredients: ['Mixed nuts', 'Chili powder', 'Honey', 'Salt'],
+    steps: [
+      'Toss nuts with honey, chili powder, and salt',
+      'Roast at 350°F for 8-10 minutes, stirring once',
+      'Cool completely so the coating crisps up',
+    ],
   },
   {
     id: 'snack-5',
@@ -55,6 +80,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great after sushi night',
     mood: ['cozy', 'fancy'],
     reason: 'Light, sweet finish after a sushi dinner',
+    ingredients: ['Assorted mochi ice cream'],
+    steps: [
+      'Grab a box from the freezer aisle',
+      'Let sit at room temperature for 3-5 minutes before serving',
+      'Split the flavors so you both get to try everything',
+    ],
   },
   {
     id: 'snack-6',
@@ -66,6 +97,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with taco night',
     mood: ['spontaneous', 'funny'],
     reason: 'Easy to make while the tacos are still going',
+    ingredients: ['Tortilla chips', 'Shredded cheese', 'Jalapeños', 'Sour cream', 'Salsa'],
+    steps: [
+      'Spread chips on a sheet pan and cover with cheese',
+      'Broil until melted and bubbling, watching closely',
+      'Top with jalapeños, sour cream, and salsa',
+    ],
   },
   {
     id: 'snack-7',
@@ -77,6 +114,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with a fancy night in',
     mood: ['fancy', 'romantic'],
     reason: 'Feels like dessert at a nice restaurant',
+    ingredients: ['Mini cheesecake bites', 'Berry compote (optional)'],
+    steps: [
+      'Pick up a box from the bakery case',
+      'Plate two at a time so they feel intentional',
+      'Add a spoon of berry compote if you have it',
+    ],
   },
   {
     id: 'snack-8',
@@ -88,6 +131,13 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with a lazy Sunday',
     mood: ['lazy', 'nostalgic'],
     reason: 'Nostalgic comfort snack, minimal effort',
+    ingredients: ['Refrigerated pretzel dough', 'Coarse salt', 'Mustard for dipping'],
+    steps: [
+      'Shape dough into pretzel twists',
+      'Bake according to package instructions until golden',
+      'Sprinkle with coarse salt while warm',
+      'Serve with mustard on the side',
+    ],
   },
   {
     id: 'snack-9',
@@ -99,6 +149,12 @@ export const snacks: SnackCard[] = [
     pairing: 'Great with wine',
     mood: ['romantic', 'fancy'],
     reason: 'Pairs beautifully with a glass of red',
+    ingredients: ['Assorted dark chocolate truffles'],
+    steps: [
+      'Pick up a small box from the chocolate shop',
+      'Let them sit out for a few minutes before eating',
+      'Pair one at a time with sips of red wine',
+    ],
   },
   {
     id: 'snack-10',
@@ -110,5 +166,11 @@ export const snacks: SnackCard[] = [
     pairing: 'Great for a low-key hangout',
     mood: ['lazy', 'cozy'],
     reason: 'Zero effort, always a crowd pleaser',
+    ingredients: ['Kettle-cooked chips', 'French onion dip'],
+    steps: [
+      'Pour chips into a bowl',
+      'Set the dip alongside',
+      'Done — that is the whole recipe',
+    ],
   },
 ]

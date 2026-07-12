@@ -72,6 +72,8 @@ export interface MovieCard extends BaseCard {
   runtimeMinutes: number
   platform: StreamingService
   rating: string
+  synopsis: string
+  cast: string[]
 }
 
 export interface FoodCard extends BaseCard {
@@ -81,6 +83,8 @@ export interface FoodCard extends BaseCard {
   method: 'delivery' | 'pickup' | 'cook at home'
   timeMinutes: number
   dietaryTags: DietaryTag[]
+  ingredients: string[]
+  steps: string[]
 }
 
 export interface SnackCard extends BaseCard {
@@ -88,6 +92,8 @@ export interface SnackCard extends BaseCard {
   flavor: 'sweet' | 'salty' | 'spicy'
   source: 'store' | 'homemade'
   pairing: string
+  ingredients: string[]
+  steps: string[]
 }
 
 export interface DrinkCard extends BaseCard {
@@ -95,6 +101,8 @@ export interface DrinkCard extends BaseCard {
   alcoholic: boolean
   pairing: string
   difficulty: 'easy' | 'medium' | 'hard'
+  ingredients: string[]
+  steps: string[]
 }
 
 export interface BundleCard extends BaseCard {

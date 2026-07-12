@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
 import type { AnyCard } from '../types'
-import DateCard from './DateCard'
+import FlippableCard from './FlippableCard'
 
 const SWIPE_THRESHOLD = 100
 
@@ -55,7 +55,7 @@ function SwipeableTopCard({
       >
         NO
       </motion.div>
-      <DateCard card={card} />
+      <FlippableCard card={card} />
     </motion.div>
   )
 }
@@ -97,7 +97,7 @@ export default function SwipeDeck({
                     onSwiped={(dir) => onSwipe(card, dir)}
                   />
                 ) : (
-                  <DateCard card={card} />
+                  <FlippableCard card={card} interactive={false} />
                 )}
               </motion.div>
             )
