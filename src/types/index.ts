@@ -170,6 +170,10 @@ export interface DateNightPlan {
   startTime: string
   notes: string
   shoppingListIds: string[]
+  completed: boolean
+  completedAt: number | null
+  rating: number | null
+  memory: string | null
 }
 
 export interface ShoppingItem {

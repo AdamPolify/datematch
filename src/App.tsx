@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Browse from './pages/Browse'
 import Swipe from './pages/Swipe'
 import Matches from './pages/Matches'
+import Dates from './pages/Dates'
 import Plan from './pages/Plan'
 import Shopping from './pages/Shopping'
 import Preferences from './pages/Preferences'
@@ -20,7 +21,14 @@ function Gate({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
-const TAB_ROUTES = ['/home', '/browse', '/matches', '/shopping', '/preferences']
+const TAB_ROUTES = [
+  '/home',
+  '/browse',
+  '/matches',
+  '/dates',
+  '/shopping',
+  '/preferences',
+]
 
 function Shell() {
   const location = useLocation()
@@ -60,6 +68,14 @@ function Shell() {
             element={
               <Gate>
                 <Matches />
+              </Gate>
+            }
+          />
+          <Route
+            path="/dates"
+            element={
+              <Gate>
+                <Dates />
               </Gate>
             }
           />

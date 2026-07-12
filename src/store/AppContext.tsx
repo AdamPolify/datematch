@@ -276,6 +276,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
           startTime: '7:30 PM',
           notes: '',
           shoppingListIds: [],
+          completed: false,
+          completedAt: null,
+          rating: null,
+          memory: null,
         }
         const autoItems: ShoppingItem[] =
           bundle.food.method === 'cook at home'
