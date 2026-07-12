@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
-import { SectionTitle, Chip, Card } from '../components/ui'
+import { SectionTitle, Chip, Card, SecondaryButton } from '../components/ui'
 import {
   STREAMING_SERVICES,
   CUISINES,
@@ -19,7 +20,8 @@ function toggle<T>(list: T[], item: T): T[] {
 }
 
 export default function Preferences() {
-  const { profile, updatePreferences, setPartnerName } = useApp()
+  const { profile, updatePreferences, setPartnerName, resetOnboarding } = useApp()
+  const navigate = useNavigate()
   const [dislikedFoodInput, setDislikedFoodInput] = useState('')
   const prefs = profile.preferences
 
@@ -242,6 +244,22 @@ export default function Preferences() {
           </Chip>
         ))}
       </div>
+
+      <SectionTitle>Danger zone</SectionTitle>
+      <Card>
+        <p className="mb-3 text-sm text-[var(--color-muted)]">
+          Walk through onboarding again from the start. This resets your
+          couple, preferences, swipes, matches, and plans.
+        </p>
+        <SecondaryButton
+          onClick={() => {
+            resetOnboarding()
+            navigate('/onboarding')
+          }}
+        >
+          Restart onboarding
+        </SecondaryButton>
+      </Card>
     </div>
   )
 }
