@@ -1,0 +1,133 @@
+import type { BundleCard, Budget } from '../types'
+import { movies } from './movies'
+import { foods } from './food'
+import { snacks } from './snacks'
+import { drinks } from './drinks'
+
+function costLevel(...levels: Budget[]): Budget {
+  if (levels.includes('$$$')) return '$$$'
+  if (levels.includes('$$')) return '$$'
+  return '$'
+}
+
+const byId = {
+  movie: (id: string) => movies.find((m) => m.id === id)!,
+  food: (id: string) => foods.find((f) => f.id === id)!,
+  snack: (id: string) => snacks.find((s) => s.id === id)!,
+  drink: (id: string) => drinks.find((d) => d.id === id)!,
+}
+
+export const bundles: BundleCard[] = [
+  {
+    id: 'bundle-1',
+    kind: 'bundle',
+    title: 'Cozy Comfort Night',
+    image: '🕯️',
+    mood: ['cozy'],
+    reason: 'Cozy, low-effort, and uses your Netflix subscription',
+    food: byId.food('food-1'),
+    movie: byId.movie('movie-1'),
+    snack: byId.snack('snack-2'),
+    drink: byId.drink('drink-1'),
+    estimatedTimeMinutes: 35 + 94 + 10,
+    estimatedCost: costLevel('$', '$'),
+  },
+  {
+    id: 'bundle-2',
+    kind: 'bundle',
+    title: 'Scary Movie Night',
+    image: '🎃',
+    mood: ['scary'],
+    reason: 'Jump scares, cheesy snacks, and a spicy kick',
+    food: byId.food('food-7'),
+    movie: byId.movie('movie-2'),
+    snack: byId.snack('snack-1'),
+    drink: byId.drink('drink-6'),
+    estimatedTimeMinutes: 35 + 108 + 10,
+    estimatedCost: costLevel('$', '$$'),
+  },
+  {
+    id: 'bundle-3',
+    kind: 'bundle',
+    title: 'Lazy Sunday Date',
+    image: '🛋️',
+    mood: ['lazy'],
+    reason: 'Zero-effort comfort food and a nostalgic milkshake',
+    food: byId.food('food-4'),
+    movie: byId.movie('movie-11'),
+    snack: byId.snack('snack-8'),
+    drink: byId.drink('drink-4'),
+    estimatedTimeMinutes: 25 + 22 + 10,
+    estimatedCost: costLevel('$', '$'),
+  },
+  {
+    id: 'bundle-4',
+    kind: 'bundle',
+    title: 'Fancy At-Home Date',
+    image: '🥂',
+    mood: ['fancy', 'romantic'],
+    reason: 'Dress up, stay home — restaurant energy without the reservation',
+    food: byId.food('food-9'),
+    movie: byId.movie('movie-6'),
+    snack: byId.snack('snack-7'),
+    drink: byId.drink('drink-5'),
+    estimatedTimeMinutes: 40 + 124 + 15,
+    estimatedCost: costLevel('$$$', '$$'),
+  },
+  {
+    id: 'bundle-5',
+    kind: 'bundle',
+    title: 'Taco Tuesday, Any Day',
+    image: '🌮',
+    mood: ['spontaneous', 'funny'],
+    reason: 'Fast, fun, and a little messy — in a good way',
+    food: byId.food('food-3'),
+    movie: byId.movie('movie-3'),
+    snack: byId.snack('snack-6'),
+    drink: byId.drink('drink-2'),
+    estimatedTimeMinutes: 30 + 101 + 10,
+    estimatedCost: costLevel('$', '$$'),
+  },
+  {
+    id: 'bundle-6',
+    kind: 'bundle',
+    title: 'Sushi & Slow Burn',
+    image: '🍣',
+    mood: ['fancy', 'cozy'],
+    reason: 'Sushi delivery paired with a nostalgic sci-fi watch',
+    food: byId.food('food-2'),
+    movie: byId.movie('movie-4'),
+    snack: byId.snack('snack-5'),
+    drink: byId.drink('drink-7'),
+    estimatedTimeMinutes: 40 + 118 + 10,
+    estimatedCost: costLevel('$$', '$$'),
+  },
+  {
+    id: 'bundle-7',
+    kind: 'bundle',
+    title: 'Nostalgic Comfort Combo',
+    image: '📼',
+    mood: ['nostalgic', 'cozy'],
+    reason: 'A dumpling dinner and an old favorite rewatch',
+    food: byId.food('food-11'),
+    movie: byId.movie('movie-10'),
+    snack: byId.snack('snack-9'),
+    drink: byId.drink('drink-8'),
+    estimatedTimeMinutes: 25 + 100 + 10,
+    estimatedCost: costLevel('$$', '$$'),
+  },
+  {
+    id: 'bundle-8',
+    kind: 'bundle',
+    title: 'Stand-Up & Spice',
+    image: '🎤',
+    mood: ['funny', 'spontaneous'],
+    reason: 'Quick laughs with a spicy Thai dinner',
+    food: byId.food('food-5'),
+    movie: byId.movie('movie-5'),
+    snack: byId.snack('snack-4'),
+    drink: byId.drink('drink-9'),
+    estimatedTimeMinutes: 20 + 62 + 10,
+    estimatedCost: costLevel('$$', '$'),
+  },
+]
