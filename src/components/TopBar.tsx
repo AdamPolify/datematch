@@ -14,7 +14,7 @@ export default function TopBar({ title, subtitle, onBack, right }: TopBarProps) 
       {onBack && (
         <button
           onClick={onBack ?? (() => navigate(-1))}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-ink)]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink)]"
           aria-label="Back"
         >
           ←

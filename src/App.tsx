@@ -4,8 +4,8 @@ import { AppProvider, useApp } from './store/AppContext'
 import BottomNav from './components/BottomNav'
 import Onboarding from './pages/Onboarding'
 import Home from './pages/Home'
+import Browse from './pages/Browse'
 import Swipe from './pages/Swipe'
-import FullDateNight from './pages/FullDateNight'
 import Matches from './pages/Matches'
 import Plan from './pages/Plan'
 import Shopping from './pages/Shopping'
@@ -20,7 +20,7 @@ function Gate({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
-const TAB_ROUTES = ['/home', '/matches', '/shopping', '/preferences']
+const TAB_ROUTES = ['/home', '/browse', '/matches', '/shopping', '/preferences']
 
 function Shell() {
   const location = useLocation()
@@ -48,10 +48,10 @@ function Shell() {
             }
           />
           <Route
-            path="/full-date-night"
+            path="/browse"
             element={
               <Gate>
-                <FullDateNight />
+                <Browse />
               </Gate>
             }
           />

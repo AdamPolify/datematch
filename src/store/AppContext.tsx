@@ -9,9 +9,12 @@ import {
 import type {
   AnyCard,
   BundleCard,
+  CookingEffort,
   CoupleProfile,
   DateNightPlan,
+  Genre,
   Match,
+  Mood,
   PartnerId,
   Preferences,
   ShoppingItem,
@@ -50,6 +53,24 @@ const defaultProfile: CoupleProfile = {
   onboarded: false,
 }
 
+export interface DateNightSession {
+  configured: boolean
+  stageIndex: number
+  picks: Partial<Record<'food' | 'movie' | 'snack' | 'drink', string>>
+  moods: Mood[]
+  genres: Genre[]
+  cookingEffort: CookingEffort | null
+}
+
+const defaultDateNightSession: DateNightSession = {
+  configured: false,
+  stageIndex: 0,
+  picks: {},
+  moods: [],
+  genres: [],
+  cookingEffort: null,
+}
+
 interface PersistedState {
   profile: CoupleProfile
   activePartner: PartnerId
@@ -58,6 +79,7 @@ interface PersistedState {
   plans: DateNightPlan[]
   shoppingList: ShoppingItem[]
   favorites: string[]
+  dateNightSession: DateNightSession
 }
 
 const defaultState: PersistedState = {
@@ -68,6 +90,7 @@ const defaultState: PersistedState = {
   plans: [],
   shoppingList: [],
   favorites: [],
+  dateNightSession: defaultDateNightSession,
 }
 
 function loadState(): PersistedState {
@@ -102,6 +125,8 @@ interface AppContextValue extends PersistedState {
   clearMatches: () => void
   resetSwipesForKind: (kind: AnyCard['kind']) => void
   registerMatch: (card: AnyCard) => Match
+  updateDateNightSession: (updates: Partial<DateNightSession>) => void
+  resetDateNightSession: () => void
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
@@ -346,6 +371,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
         })
         return result
       },
+
+      updateDateNightSession: (updates) =>
+        setState((s) => ({
+          ...s,
+          dateNightSession: { ...s.dateNightSession, ...updates },
+        })),
+
+      resetDateNightSession: () =>
+        setState((s) => ({ ...s, dateNightSession: defaultDateNightSession })),
     }
   }, [state])
 

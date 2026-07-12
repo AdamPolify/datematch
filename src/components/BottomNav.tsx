@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 const tabs = [
   { to: '/home', label: 'Home', icon: '🏠' },
+  { to: '/browse', label: 'Browse', icon: '🔍' },
   { to: '/matches', label: 'Matches', icon: '💘' },
   { to: '/shopping', label: 'List', icon: '🛒' },
   { to: '/preferences', label: 'Us', icon: '⚙️' },

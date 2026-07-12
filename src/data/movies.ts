@@ -4,53 +4,6 @@ import type { MovieCard } from '../types'
 
 export const movies: MovieCard[] = [
   {
-    "id": "movie-tmdb-1202033",
-    "kind": "movie",
-    "title": "Enola Holmes 3",
-    "image": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
-    "genre": [
-      "action",
-      "thriller"
-    ],
-    "runtimeMinutes": 109,
-    "platform": "Netflix",
-    "rating": "PG-13",
-    "mood": [
-      "spontaneous",
-      "scary"
-    ],
-    "reason": "Trending everywhere right now",
-    "synopsis": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
-    "cast": [
-      "Millie Bobby Brown",
-      "Henry Cavill",
-      "Helena Bonham Carter"
-    ]
-  },
-  {
-    "id": "movie-tmdb-687163",
-    "kind": "movie",
-    "title": "Project Hail Mary",
-    "image": "https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
-    "genre": [
-      "sci-fi",
-      "action"
-    ],
-    "runtimeMinutes": 157,
-    "platform": "Prime Video",
-    "rating": "PG-13",
-    "mood": [
-      "spontaneous"
-    ],
-    "reason": "Trending everywhere right now",
-    "synopsis": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysteriou",
-    "cast": [
-      "Ryan Gosling",
-      "Sandra Hüller",
-      "James Ortiz"
-    ]
-  },
-  {
     "id": "movie-tmdb-1301421",
     "kind": "movie",
     "title": "The Sheep Detectives",
@@ -62,7 +15,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 109,
     "platform": "Prime Video",
-    "rating": "PG",
+    "rating": "7",
     "mood": [
       "funny",
       "cozy",
@@ -87,7 +40,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 133,
     "platform": "HBO Max",
-    "rating": "R",
+    "rating": "15",
     "mood": [
       "scary"
     ],
@@ -100,53 +53,50 @@ export const movies: MovieCard[] = [
     ]
   },
   {
-    "id": "movie-tmdb-1710008",
+    "id": "movie-tmdb-1202033",
     "kind": "movie",
-    "title": "Nothing to Lose",
-    "image": "https://image.tmdb.org/t/p/w500/3SKN8QZptMm8KfCCQtEmyh1Zkgz.jpg",
+    "title": "Enola Holmes 3",
+    "image": "https://image.tmdb.org/t/p/w500/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
     "genre": [
-      "drama",
-      "action"
+      "action",
+      "thriller"
     ],
-    "runtimeMinutes": 102,
+    "runtimeMinutes": 109,
     "platform": "Netflix",
     "rating": "NR",
     "mood": [
-      "fancy",
-      "nostalgic",
-      "spontaneous"
+      "spontaneous",
+      "scary"
     ],
     "reason": "Trending everywhere right now",
-    "synopsis": "She gave everything to become a mother, so when her young son falls ill, Jada will stop at  nothing to find a donor and save him — no matter the cost.",
+    "synopsis": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
     "cast": [
-      "Nawell Madani",
-      "Guillaume Gouix",
-      "Nicolas Briançon"
+      "Millie Bobby Brown",
+      "Henry Cavill",
+      "Helena Bonham Carter"
     ]
   },
   {
-    "id": "movie-tmdb-1484913",
+    "id": "movie-tmdb-687163",
     "kind": "movie",
-    "title": "Ikka",
-    "image": "https://image.tmdb.org/t/p/w500/fp5EAKE8nTx402n1fWz55QsuYY9.jpg",
+    "title": "Project Hail Mary",
+    "image": "https://image.tmdb.org/t/p/w500/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
     "genre": [
-      "drama",
-      "thriller"
+      "sci-fi",
+      "action"
     ],
-    "runtimeMinutes": 140,
-    "platform": "Netflix",
-    "rating": "NR",
+    "runtimeMinutes": 157,
+    "platform": "Prime Video",
+    "rating": "11",
     "mood": [
-      "fancy",
-      "nostalgic",
       "spontaneous"
     ],
     "reason": "Trending everywhere right now",
-    "synopsis": "With a loved one's life at stake, a celebrated lawyer must defend a man he suspects is guilty — battling his conscience every step of the way.",
+    "synopsis": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysteriou",
     "cast": [
-      "Sunny Deol",
-      "Akshaye Khanna",
-      "Tillotama Shome"
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz"
     ]
   },
   {
@@ -161,7 +111,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 102,
     "platform": "Netflix",
-    "rating": "PG",
+    "rating": "7",
     "mood": [
       "spontaneous",
       "cozy"
@@ -175,29 +125,6 @@ export const movies: MovieCard[] = [
     ]
   },
   {
-    "id": "movie-tmdb-424",
-    "kind": "movie",
-    "title": "Schindler's List",
-    "image": "https://image.tmdb.org/t/p/w500/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
-    "genre": [
-      "drama"
-    ],
-    "runtimeMinutes": 195,
-    "platform": "Netflix",
-    "rating": "R",
-    "mood": [
-      "fancy",
-      "nostalgic"
-    ],
-    "reason": "One of the best-reviewed picks available",
-    "synopsis": "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
-    "cast": [
-      "Liam Neeson",
-      "Ben Kingsley",
-      "Ralph Fiennes"
-    ]
-  },
-  {
     "id": "movie-tmdb-389",
     "kind": "movie",
     "title": "12 Angry Men",
@@ -207,7 +134,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 97,
     "platform": "Prime Video",
-    "rating": "NR",
+    "rating": "15",
     "mood": [
       "fancy",
       "nostalgic"
@@ -231,7 +158,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 114,
     "platform": "Netflix",
-    "rating": "PG-13",
+    "rating": "NR",
     "mood": [
       "fancy",
       "nostalgic",
@@ -255,8 +182,8 @@ export const movies: MovieCard[] = [
       "sci-fi"
     ],
     "runtimeMinutes": 125,
-    "platform": "HBO Max",
-    "rating": "PG",
+    "platform": "Netflix",
+    "rating": "7",
     "mood": [
       "cozy",
       "spontaneous"
@@ -279,8 +206,8 @@ export const movies: MovieCard[] = [
       "thriller"
     ],
     "runtimeMinutes": 152,
-    "platform": "HBO Max",
-    "rating": "PG-13",
+    "platform": "Prime Video",
+    "rating": "15",
     "mood": [
       "spontaneous",
       "scary"
@@ -305,7 +232,7 @@ export const movies: MovieCard[] = [
     ],
     "runtimeMinutes": 190,
     "platform": "Netflix",
-    "rating": "G",
+    "rating": "NR",
     "mood": [
       "funny",
       "fancy",
@@ -320,6 +247,32 @@ export const movies: MovieCard[] = [
     ]
   },
   {
+    "id": "movie-tmdb-497",
+    "kind": "movie",
+    "title": "The Green Mile",
+    "image": "https://image.tmdb.org/t/p/w500/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg",
+    "genre": [
+      "sci-fi",
+      "drama",
+      "thriller"
+    ],
+    "runtimeMinutes": 189,
+    "platform": "Prime Video",
+    "rating": "15",
+    "mood": [
+      "spontaneous",
+      "fancy",
+      "nostalgic"
+    ],
+    "reason": "One of the best-reviewed picks available",
+    "synopsis": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's mir",
+    "cast": [
+      "Tom Hanks",
+      "David Morse",
+      "Bonnie Hunt"
+    ]
+  },
+  {
     "id": "movie-tmdb-122",
     "kind": "movie",
     "title": "The Lord of the Rings: The Return of the King",
@@ -329,8 +282,8 @@ export const movies: MovieCard[] = [
       "sci-fi"
     ],
     "runtimeMinutes": 201,
-    "platform": "HBO Max",
-    "rating": "PG-13",
+    "platform": "Netflix",
+    "rating": "11",
     "mood": [
       "spontaneous"
     ],
@@ -340,32 +293,6 @@ export const movies: MovieCard[] = [
       "Elijah Wood",
       "Ian McKellen",
       "Viggo Mortensen"
-    ]
-  },
-  {
-    "id": "movie-tmdb-372058",
-    "kind": "movie",
-    "title": "Your Name.",
-    "image": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg",
-    "genre": [
-      "animated",
-      "romance",
-      "drama"
-    ],
-    "runtimeMinutes": 106,
-    "platform": "HBO Max",
-    "rating": "PG",
-    "mood": [
-      "cozy",
-      "romantic",
-      "fancy"
-    ],
-    "reason": "One of the best-reviewed picks available",
-    "synopsis": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen rando",
-    "cast": [
-      "Ryunosuke Kamiki",
-      "Mone Kamishiraishi",
-      "Ryo Narita"
     ]
   }
 ]

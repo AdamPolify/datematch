@@ -61,7 +61,7 @@ export default function Shopping() {
                 {item.label}
               </span>
               {item.source === 'auto' && (
-                <span className="rounded-full bg-black/30 px-2 py-0.5 text-[10px] text-[var(--color-muted)]">
+                <span className="rounded-full bg-[var(--color-surface-2)] px-2 py-0.5 text-[10px] text-[var(--color-muted)]">
                   from plan
                 </span>
               )}

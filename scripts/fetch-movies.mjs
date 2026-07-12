@@ -12,7 +12,7 @@ if (!API_KEY) {
 
 const BASE = 'https://api.themoviedb.org/3'
 const IMG = 'https://image.tmdb.org/t/p/w500'
-const REGION = 'US'
+const REGION = process.env.TMDB_REGION || 'SE'
 const TARGET_COUNT = 18
 
 // TMDB genre id -> our Genre enum

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
 import type { AnyCard } from '../types'
-import FlippableCard from './FlippableCard'
+import SwipeCard from './SwipeCard'
 
 const SWIPE_THRESHOLD = 100
 
@@ -18,13 +18,17 @@ function SwipeableTopCard({
   const nopeOpacity = useTransform(x, [-120, -20], [1, 0])
   const [exiting, setExiting] = useState<'left' | 'right' | null>(null)
 
+  function triggerSwipe(direction: 'left' | 'right') {
+    if (exiting) return
+    setExiting(direction)
+    onSwiped(direction)
+  }
+
   function handleDragEnd(_: unknown, info: { offset: { x: number }; velocity: { x: number } }) {
     if (info.offset.x > SWIPE_THRESHOLD || info.velocity.x > 600) {
-      setExiting('right')
-      onSwiped('right')
+      triggerSwipe('right')
     } else if (info.offset.x < -SWIPE_THRESHOLD || info.velocity.x < -600) {
-      setExiting('left')
-      onSwiped('left')
+      triggerSwipe('left')
     }
   }
 
@@ -55,7 +59,11 @@ function SwipeableTopCard({
       >
         NO
       </motion.div>
-      <FlippableCard card={card} />
+      <SwipeCard
+        card={card}
+        onSwipeLeft={() => triggerSwipe('left')}
+        onSwipeRight={() => triggerSwipe('right')}
+      />
     </motion.div>
   )
 }
@@ -97,7 +105,7 @@ export default function SwipeDeck({
                     onSwiped={(dir) => onSwipe(card, dir)}
                   />
                 ) : (
-                  <FlippableCard card={card} interactive={false} />
+                  <SwipeCard card={card} interactive={false} />
                 )}
               </motion.div>
             )

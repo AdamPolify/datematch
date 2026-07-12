@@ -73,7 +73,7 @@ export function Card({
   return (
     <div
       className={clsx(
-        'rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4',
+        'rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 shadow-sm shadow-black/[0.03]',
         className,
       )}
     >

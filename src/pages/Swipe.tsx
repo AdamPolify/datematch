@@ -74,22 +74,6 @@ export default function Swipe() {
         {deck.length > 0 ? (
           <>
             <SwipeDeck cards={deck} onSwipe={handleSwipe} />
-            <div className="mt-8 flex items-center justify-center gap-6">
-              <button
-                onClick={() => handleSwipe(deck[0], 'left')}
-                className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-2xl text-white shadow-lg active:scale-95"
-                aria-label="Pass"
-              >
-                ✕
-              </button>
-              <button
-                onClick={() => handleSwipe(deck[0], 'right')}
-                className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-hot-pink)] to-[var(--color-warm-orange)] text-2xl text-white shadow-lg active:scale-95"
-                aria-label="Like"
-              >
-                ♥
-              </button>
-            </div>
             <p className="mt-4 text-center text-xs text-[var(--color-muted)]">
               {deck.length} card{deck.length === 1 ? '' : 's'} left
             </p>

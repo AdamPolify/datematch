@@ -44,7 +44,7 @@ export default function Matches() {
                   {match.card.reason}
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-black/30 px-2 py-1 text-[10px] font-semibold uppercase text-[var(--color-muted)]">
+              <span className="shrink-0 rounded-full bg-[var(--color-surface-2)] px-2 py-1 text-[10px] font-semibold uppercase text-[var(--color-muted)]">
                 {match.card.kind}
               </span>
             </button>

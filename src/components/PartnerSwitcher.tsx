@@ -5,7 +5,7 @@ export default function PartnerSwitcher() {
   const { profile, activePartner, setActivePartner } = useApp()
 
   return (
-    <div className="flex items-center rounded-full bg-[var(--color-surface)] p-1 text-xs">
+    <div className="flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] p-1 text-xs">
       {(['A', 'B'] as const).map((id) => (
         <button
           key={id}

@@ -3,23 +3,23 @@
 @theme {
   --font-sans: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
 
-  --color-base: #1a1024;
-  --color-base-2: #241531;
-  --color-surface: #2b1a3d;
-  --color-surface-2: #35204a;
-  --color-border: #4a2d63;
+  --color-base: #fffbfa;
+  --color-base-2: #fff2f3;
+  --color-surface: #ffffff;
+  --color-surface-2: #fff0f1;
+  --color-border: #f3dfe1;
 
-  --color-hot-pink: #ff5d8f;
-  --color-warm-orange: #ff8a5b;
-  --color-purple: #b06ab3;
-  --color-gold: #ffc857;
+  --color-hot-pink: #ff3b6b;
+  --color-warm-orange: #ff5b57;
+  --color-purple: #ff7a94;
+  --color-gold: #ff8a5c;
 
-  --color-ink: #fdf3ff;
-  --color-muted: #cbb3d8;
+  --color-ink: #2a1418;
+  --color-muted: #9c7c81;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -45,8 +45,8 @@ body {
   flex-direction: column;
   position: relative;
   background:
-    radial-gradient(circle at 15% 0%, rgba(255, 93, 143, 0.18), transparent 55%),
-    radial-gradient(circle at 85% 15%, rgba(176, 106, 179, 0.18), transparent 50%),
+    radial-gradient(circle at 15% 0%, rgba(255, 59, 107, 0.08), transparent 55%),
+    radial-gradient(circle at 85% 15%, rgba(255, 122, 148, 0.1), transparent 50%),
     var(--color-base);
 }
 
