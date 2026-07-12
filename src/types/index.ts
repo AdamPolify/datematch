@@ -144,6 +144,7 @@ export interface PartnerProfile {
 export interface CoupleProfile {
   coupleName: string
   inviteCode: string
+  country: string
   partners: Record<PartnerId, PartnerProfile>
   preferences: Preferences
   onboarded: boolean

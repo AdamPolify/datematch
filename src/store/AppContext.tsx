@@ -45,6 +45,7 @@ function randomInviteCode() {
 const defaultProfile: CoupleProfile = {
   coupleName: '',
   inviteCode: randomInviteCode(),
+  country: '',
   partners: {
     A: { id: 'A', name: '', joined: false },
     B: { id: 'B', name: '', joined: false },
