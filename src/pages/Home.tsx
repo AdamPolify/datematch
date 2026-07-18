@@ -6,7 +6,6 @@ import { sortByPreferenceFit } from '../lib/matching'
 import { GENRES, MOODS, MOOD_EMOJI, COOKING_EFFORTS } from '../data/options'
 import SwipeDeck from '../components/SwipeDeck'
 import MatchOverlay from '../components/MatchOverlay'
-import PartnerSwitcher from '../components/PartnerSwitcher'
 import CardArt from '../components/CardArt'
 import { Chip, PrimaryButton, SecondaryButton } from '../components/ui'
 import type {
@@ -21,11 +20,74 @@ import type {
 
 type StageKind = 'food' | 'movie' | 'snack' | 'drink'
 
-const STAGES: { kind: StageKind; label: string; icon: string }[] = [
-  { kind: 'food', label: 'Food', icon: '🍽️' },
-  { kind: 'movie', label: 'Movie', icon: '🎬' },
-  { kind: 'snack', label: 'Snack', icon: '🍿' },
-  { kind: 'drink', label: 'Drink', icon: '🍹' },
+function PizzaIcon() {
+  return (
+    <svg viewBox="0 0 11 11" fill="none" className="h-[14px] w-[14px]">
+      <path
+        d="M7.68 0.77 8.64.6c.79-.14 1.48.55 1.35 1.35l-.64 3.75-.43 2.51-.15.86c-.11.64-.73 1.08-1.35.89A7.9 7.9 0 0 1 3.18 7.4 7.9 7.9 0 0 1 .63 3.17c-.19-.62.25-1.24.88-1.35l.86-.15M8.91 8.21a7.9 7.9 0 0 1-2.67-1.01M2.37 1.67c.3 1.57 1.05 3.06 2.26 4.28.5.49 1.04.91 1.61 1.25M2.37 1.67l3.29-.56M9.34 5.7a1.75 1.75 0 0 0-3.16 1.5"
+        stroke="currentColor"
+        strokeWidth="1.17"
+        strokeLinecap="square"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function TvIcon() {
+  return (
+    <svg viewBox="0 0 12 11" fill="none" className="h-[14px] w-[14px]">
+      <path
+        d="M9.33 9.92a11 11 0 0 0-7 0M1.75 7.58h8.17c.64 0 1.16-.52 1.16-1.17V1.75c0-.64-.52-1.17-1.16-1.17H1.75c-.64 0-1.17.53-1.17 1.17v4.66c0 .65.53 1.17 1.17 1.17Z"
+        stroke="currentColor"
+        strokeWidth="1.17"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function CookiesIcon() {
+  return (
+    <svg viewBox="0 0 12 12" fill="currentColor" className="h-[14px] w-[14px]">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0 5.83A5.83 5.83 0 0 1 6.5.04a.83.83 0 0 1 .5.85c0 .74.55 1.35 1.26 1.44.26.04.47.24.5.5.1.71.71 1.26 1.45 1.26.18 0 .35-.03.51-.09a.58.58 0 0 1 .76.42c.12.46.18.94.18 1.44a5.83 5.83 0 1 1-11.67 0Zm5.83-4.67a4.67 4.67 0 1 0 4.63 4.06 1.75 1.75 0 0 1-2.17-1.86A2.33 2.33 0 0 1 5.85 1.17Z"
+      />
+      <circle cx="3.79" cy="3.79" r="0.88" />
+      <circle cx="6.13" cy="5.54" r="0.88" />
+      <circle cx="8.75" cy="7" r="0.58" />
+      <circle cx="5.54" cy="8.46" r="0.88" />
+      <circle cx="2.92" cy="7" r="0.58" />
+    </svg>
+  )
+}
+
+function CocktailIcon() {
+  return (
+    <svg viewBox="0 0 12 11" fill="none" className="h-[14px] w-[14px]">
+      <path
+        d="M5.86 5.83V10.5M5.86 5.83 1.11 2.73C.14 2.09.6.58 1.75.58h8.22c1.16 0 1.6 1.5.64 2.15L5.86 5.83ZM5.86 10.5H3.53M5.86 10.5h2.33"
+        stroke="currentColor"
+        strokeWidth="1.17"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+const STAGES: {
+  kind: StageKind
+  label: string
+  Icon: () => React.JSX.Element
+}[] = [
+  { kind: 'food', label: 'Food', Icon: PizzaIcon },
+  { kind: 'movie', label: 'Movie', Icon: TvIcon },
+  { kind: 'snack', label: 'Snack', Icon: CookiesIcon },
+  { kind: 'drink', label: 'Drink', Icon: CocktailIcon },
 ]
 
 const cardsById: Record<string, AnyCard> = {}
@@ -148,38 +210,43 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col">
-      <div className="flex items-center justify-between gap-3 px-5 pt-6">
-        <div className="min-w-0">
-          <p className="truncate text-sm text-[var(--color-muted)]">
-            {profile.partners.A.name || 'You'} &amp; {profile.partners.B.name || 'Partner'}
-          </p>
-          <h1 className="text-xl font-bold text-[var(--color-ink)]">
-            Tonight's picks
-          </h1>
-        </div>
-        <PartnerSwitcher />
+    <div className="flex min-h-svh flex-col px-4 pt-5">
+      <div className="flex items-center justify-between">
+        <h1
+          className="text-[32px] font-black leading-none tracking-[-1.28px] text-[var(--color-ink)]"
+          style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+        >
+          Tonights picks
+        </h1>
+        <button
+          onClick={() => updateDateNightSession({ configured: false })}
+          aria-label="Tonight's settings"
+          className="shrink-0 p-1"
+        >
+          <img src="home/settings.svg" alt="" className="h-5 w-5" />
+        </button>
       </div>
 
-      <div className="flex items-center justify-center gap-2 px-5 pt-4">
-        {STAGES.map((s, i) => (
-          <div
-            key={s.kind}
-            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-              i === session.stageIndex
-                ? 'bg-gradient-to-r from-[var(--color-hot-pink)] to-[var(--color-warm-orange)] text-white'
-                : i < session.stageIndex
-                  ? 'bg-[var(--color-surface-2)] text-[var(--color-muted)]'
-                  : 'bg-[var(--color-surface)] text-[var(--color-border)]'
-            }`}
-          >
-            <span>{i < session.stageIndex ? '✓' : s.icon}</span>
-            {s.label}
-          </div>
-        ))}
+      <div className="mt-4 flex items-center gap-1.5">
+        {STAGES.map((s, i) => {
+          const active = i === session.stageIndex
+          return (
+            <div
+              key={s.kind}
+              className={`flex flex-1 items-center justify-center gap-1 rounded-full py-2 text-[10px] font-medium tracking-[-0.4px] transition-colors ${
+                active
+                  ? 'bg-[#ff82e0] text-black'
+                  : 'bg-black/5 text-[#a5a5a5]'
+              }`}
+            >
+              <s.Icon />
+              {s.label}
+            </div>
+          )
+        })}
       </div>
 
-      <div className="flex flex-1 flex-col justify-center px-5 py-6">
+      <div className="flex flex-1 flex-col justify-center py-6">
         {deck.length > 0 ? (
           <>
             <p className="mb-4 text-center text-sm text-[var(--color-muted)]">
@@ -187,9 +254,6 @@ export default function Home() {
               {stage.label.toLowerCase()}
             </p>
             <SwipeDeck cards={deck} onSwipe={handleSwipe} />
-            <p className="mt-4 text-center text-xs text-[var(--color-muted)]">
-              {deck.length} card{deck.length === 1 ? '' : 's'} left
-            </p>
           </>
         ) : (
           <div className="flex flex-col items-center gap-4 text-center">

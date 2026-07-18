@@ -78,7 +78,7 @@ export default function SwipeDeck({
   const visible = cards.slice(0, 3)
 
   return (
-    <div className="relative mx-auto aspect-[3/4.6] w-full max-w-sm">
+    <div className="relative mx-auto mb-8 aspect-[3/4.6] w-full max-w-sm">
       <AnimatePresence>
         {visible
           .slice()
