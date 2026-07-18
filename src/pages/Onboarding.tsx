@@ -188,35 +188,80 @@ export default function Onboarding() {
     navigate('/home')
   }
 
+  const isWelcome = stepName === 'welcome'
+
   return (
     <div
-      className="flex min-h-svh flex-col px-6 pb-8 pt-6 text-white"
+      className={clsx(
+        'relative flex min-h-svh flex-col px-6 pb-8 pt-6 text-white',
+        isWelcome && 'overflow-hidden',
+      )}
       style={{
-        background:
-          'radial-gradient(circle at 20% 0%, rgba(255,91,87,0.25), transparent 55%), radial-gradient(circle at 90% 10%, rgba(255,59,107,0.2), transparent 50%), linear-gradient(180deg, #2a0a12 0%, #1c0509 55%, #120306 100%)',
+        background: isWelcome
+          ? 'linear-gradient(225deg, #FF8AA5 18.5%, #ECCCFF 48.3%, #B5DFFF 49.4%, #82BBFF 81.5%)'
+          : 'radial-gradient(circle at 20% 0%, rgba(255,91,87,0.25), transparent 55%), radial-gradient(circle at 90% 10%, rgba(255,59,107,0.2), transparent 50%), linear-gradient(180deg, #2a0a12 0%, #1c0509 55%, #120306 100%)',
       }}
     >
       {step > 0 && stepName !== 'done' && <BackButton onClick={back} />}
       {!NO_DOT_STEPS.has(stepName) && <DotProgress index={dotIndex} total={dotTotal} />}
 
       <div className="flex-1">
-        {stepName === 'welcome' && (
-          <div className="flex h-full flex-col items-center justify-center text-center">
-            <div className="relative mb-8 h-40 w-full">
-              <span className="absolute left-[18%] top-2 rotate-[-14deg] text-4xl">🍿</span>
-              <span className="absolute right-[15%] top-6 rotate-[10deg] text-4xl">🎬</span>
-              <span className="absolute left-[8%] top-24 rotate-[8deg] text-4xl">🍕</span>
-              <span className="absolute right-[10%] top-28 rotate-[-8deg] text-4xl">🍷</span>
-              <span className="absolute left-1/2 top-10 -translate-x-1/2 text-7xl drop-shadow-[0_8px_20px_rgba(255,59,107,0.5)]">
-                💕
-              </span>
-            </div>
-            <h1 className="mb-2 text-4xl font-extrabold">DateMatch</h1>
-            <p className="mb-2 text-lg font-medium text-white/90">
-              Money can't buy this — swipe for it instead.
+        {isWelcome && (
+          <div className="pointer-events-none absolute inset-0">
+            {/* soft cloud accents */}
+            <div className="absolute -left-10 top-[8%] h-28 w-44 rounded-full bg-white/50 blur-2xl" />
+            <div className="absolute -right-8 top-0 h-32 w-48 rounded-full bg-white/45 blur-2xl" />
+            <div className="absolute -left-6 bottom-[2%] h-36 w-56 rounded-full bg-white/55 blur-2xl" />
+            <div className="absolute right-[-10%] bottom-[6%] h-40 w-60 rounded-full bg-white/40 blur-2xl" />
+
+            {/* sparkles */}
+            <img
+              src="onboarding/star1.svg"
+              alt=""
+              className="absolute h-6 w-6"
+              style={{ left: '75.1%', top: '34.7%' }}
+            />
+            <img
+              src="onboarding/star3.svg"
+              alt=""
+              className="absolute h-[13%] w-[13%]"
+              style={{ left: '10.9%', top: '43.4%' }}
+            />
+            <img
+              src="onboarding/star2.svg"
+              alt=""
+              className="absolute h-5 w-5"
+              style={{ left: '65.4%', top: '61.2%' }}
+            />
+
+            {/* blob mascots */}
+            <img
+              src="onboarding/blob-mascots.png"
+              alt=""
+              className="absolute w-[68%] drop-shadow-[0_20px_40px_rgba(60,20,60,0.25)]"
+              style={{ left: '16.2%', top: '33.9%' }}
+            />
+
+            <p
+              className="absolute left-1/2 w-[80%] -translate-x-1/2 text-center text-[56px] font-black tracking-tight text-black"
+              style={{
+                top: '65%',
+                fontFamily: "'Nunito', 'Poppins', sans-serif",
+                fontWeight: 900,
+                backgroundImage:
+                  'linear-gradient(180deg, #000 0%, rgba(0,0,0,0.6) 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              DateMatch
             </p>
-            <p className="mb-10 text-white/50">
-              Food, movies, snacks, drinks. Swipe together, match, done.
+            <p
+              className="absolute left-1/2 w-[80%] -translate-x-1/2 text-center text-base font-medium text-black/60"
+              style={{ top: '76%' }}
+            >
+              Swipe until date night is planned.
             </p>
           </div>
         )}
@@ -694,16 +739,21 @@ export default function Onboarding() {
         )}
       </div>
 
-      <div className="mt-8 flex gap-3">
+      <div className="relative mt-8 flex gap-3">
         {stepName === 'done' ? (
           <OnboardButton onClick={finish}>Start planning →</OnboardButton>
         ) : (
           <OnboardButton onClick={next}>
-            {stepName === 'welcome' ? 'Get started →' : 'Next →'}
+            {isWelcome ? 'Get started →' : 'Next →'}
           </OnboardButton>
         )}
       </div>
-      <div className="mx-auto mt-4 h-1 w-32 rounded-full bg-white/20" />
+      <div
+        className={clsx(
+          'relative mx-auto mt-4 h-1 w-32 rounded-full',
+          isWelcome ? 'bg-black/25' : 'bg-white/20',
+        )}
+      />
     </div>
   )
 }
