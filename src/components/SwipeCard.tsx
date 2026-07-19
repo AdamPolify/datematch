@@ -1,9 +1,7 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { animate, motion, useDragControls, useMotionValue } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import type { AnyCard } from '../types'
 import { MOOD_EMOJI } from '../data/options'
-
-const PEEK_HEIGHT = 44
 
 function timeLabel(card: AnyCard): string | null {
   switch (card.kind) {
@@ -241,104 +239,73 @@ export default function SwipeCard({
   onSwipeLeft?: () => void
   onSwipeRight?: () => void
 }) {
-  const [expanded, setExpanded] = useState(false)
-  const dragControls = useDragControls()
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [cardHeight, setCardHeight] = useState(540)
-
-  useLayoutEffect(() => {
-    const el = cardRef.current
-    if (!el) return
-    const update = () => setCardHeight(el.offsetHeight)
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
-
-  const sheetHeight = Math.max(cardHeight - 24, 0)
-  const collapsedOffset = Math.max(sheetHeight - PEEK_HEIGHT, 0)
-
-  const y = useMotionValue(collapsedOffset)
-
-  useEffect(() => {
-    const controls = animate(y, expanded ? 0 : collapsedOffset, {
-      type: 'spring',
-      stiffness: 400,
-      damping: 40,
-    })
-    return () => controls.stop()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expanded, collapsedOffset])
-
+  const [flipped, setFlipped] = useState(false)
   const time = timeLabel(card)
   const topMood = card.mood[0]
 
+  function toggleFlip() {
+    if (interactive) setFlipped((v) => !v)
+  }
+
   return (
-    <div ref={cardRef} className="relative h-full w-full">
-      <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-[var(--color-base-2)] shadow-2xl">
-        <Backdrop image={card.image} title={card.title} />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
+    <div className="relative h-full w-full" style={{ perspective: 1600 }}>
+      <motion.div
+        className="relative h-full w-full"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+      >
         <div
-          className="absolute inset-x-5 flex flex-col items-center gap-3 text-center"
-          style={{ top: '29%' }}
+          onClick={toggleFlip}
+          className="absolute inset-0 overflow-hidden rounded-[28px] bg-[var(--color-base-2)] shadow-2xl"
+          style={{ backfaceVisibility: 'hidden' }}
         >
-          <h2
-            className="text-[26px] font-black leading-[1.1] text-white drop-shadow-lg"
-            style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
-          >
-            {card.title}
-          </h2>
-          <p className="line-clamp-1 text-sm text-white/70">{card.reason}</p>
-          <div className="flex items-center gap-2">
-            {time && (
-              <span className="flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1.5 text-sm font-medium text-white shadow-[inset_0_0_16px_rgba(255,255,255,0.3)] backdrop-blur">
-                <img src="home/hourglass.svg" alt="" className="h-[14px] w-[14px]" />
-                {time}
-              </span>
-            )}
-            {topMood && (
-              <span className="flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1.5 text-sm font-medium capitalize text-white shadow-[inset_0_0_16px_rgba(255,255,255,0.3)] backdrop-blur">
-                <img src="home/moonstar.svg" alt="" className="h-[14px] w-[14px]" />
-                {topMood}
-              </span>
-            )}
-          </div>
-        </div>
+          <Backdrop image={card.image} title={card.title} />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-        <motion.div
-          drag={interactive ? 'y' : false}
-          dragControls={dragControls}
-          dragListener={false}
-          dragConstraints={{ top: 0, bottom: collapsedOffset }}
-          dragElastic={0.15}
-          onDragEnd={(_, info) => {
-            if (info.offset.y < -40 || info.velocity.y < -300) setExpanded(true)
-            else if (info.offset.y > 40 || info.velocity.y > 300) setExpanded(false)
-          }}
-          style={{ y, height: sheetHeight }}
-          className="absolute inset-x-0 bottom-0 flex flex-col rounded-t-[28px] bg-[var(--color-surface)] shadow-[0_-8px_30px_rgba(0,0,0,0.08)]"
-        >
           <div
-            onPointerDown={(e) => {
-              if (!interactive) return
-              e.stopPropagation()
-              dragControls.start(e)
-            }}
-            onClick={() => setExpanded((v) => !v)}
-            className="flex shrink-0 cursor-grab flex-col items-center gap-2 pb-1 pt-2.5 active:cursor-grabbing"
+            className="absolute inset-x-5 flex flex-col items-center gap-3 text-center"
+            style={{ top: '29%' }}
           >
-            <div className="h-1 w-10 rounded-full bg-[var(--color-border)]" />
+            <h2
+              className="text-[26px] font-black leading-[1.1] text-white drop-shadow-lg"
+              style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+            >
+              {card.title}
+            </h2>
+            <p className="line-clamp-1 text-sm text-white/70">{card.reason}</p>
+            <div className="flex items-center gap-2">
+              {time && (
+                <span className="flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1.5 text-sm font-medium text-white shadow-[inset_0_0_16px_rgba(255,255,255,0.3)] backdrop-blur">
+                  <img src="home/hourglass.svg" alt="" className="h-[14px] w-[14px]" />
+                  {time}
+                </span>
+              )}
+              {topMood && (
+                <span className="flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1.5 text-sm font-medium capitalize text-white shadow-[inset_0_0_16px_rgba(255,255,255,0.3)] backdrop-blur">
+                  <img src="home/moonstar.svg" alt="" className="h-[14px] w-[14px]" />
+                  {topMood}
+                </span>
+              )}
+            </div>
           </div>
 
-          {!expanded && (
-            <p className="shrink-0 pb-4 text-center text-xs text-[var(--color-muted)]">
-              Swipe up for the full recipe
+          {interactive && (
+            <p className="absolute inset-x-0 bottom-3 text-center text-[11px] font-medium text-white/50">
+              Tap for the full recipe
             </p>
           )}
+        </div>
 
-          <div className="no-scrollbar flex-1 overflow-y-auto px-5 pb-6">
+        <div
+          onClick={toggleFlip}
+          className="absolute inset-0 flex flex-col overflow-hidden rounded-[28px] bg-[var(--color-surface)] shadow-2xl"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          <div className="no-scrollbar flex-1 overflow-y-auto p-5">
+            <h3 className="mb-2 text-lg font-bold text-[var(--color-ink)]">
+              {card.title}
+            </h3>
             <div className="mb-3 flex flex-wrap items-center gap-1.5">
               <MoodTags mood={card.mood} limit={2} />
               <span className="rounded-full bg-[var(--color-surface-2)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-muted)]">
@@ -352,8 +319,13 @@ export default function SwipeCard({
               <DetailBody card={card} />
             </div>
           </div>
-        </motion.div>
-      </div>
+          {interactive && (
+            <p className="shrink-0 pb-3 text-center text-[11px] font-medium text-[var(--color-muted)]">
+              Tap to flip back
+            </p>
+          )}
+        </div>
+      </motion.div>
 
       {interactive && (
         <div className="absolute left-1/2 -bottom-8 z-20 flex -translate-x-1/2 items-center gap-[7px]">
@@ -365,7 +337,7 @@ export default function SwipeCard({
             <img src="home/close.svg" alt="" className="h-8 w-8" />
           </button>
           <button
-            onClick={() => setExpanded((v) => !v)}
+            onClick={toggleFlip}
             aria-label="Details"
             className="flex h-16 w-16 items-center justify-center rounded-full border-[0.5px] border-white/30 bg-black/20 shadow-[0_8px_15px_rgba(0,0,0,0.15)] backdrop-blur-md active:scale-90"
           >

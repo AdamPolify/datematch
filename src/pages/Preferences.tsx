@@ -39,6 +39,30 @@ export default function Preferences() {
         {profile.partners.B.name || 'Partner B'} · Code {profile.inviteCode}
       </p>
 
+      <div className="mb-6 grid grid-cols-3 gap-2.5">
+        <button
+          onClick={() => navigate('/browse')}
+          className="flex flex-col items-center gap-1 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] py-4 text-xs font-medium text-[var(--color-ink)]"
+        >
+          <span className="text-xl">🔍</span>
+          Browse
+        </button>
+        <button
+          onClick={() => navigate('/matches')}
+          className="flex flex-col items-center gap-1 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] py-4 text-xs font-medium text-[var(--color-ink)]"
+        >
+          <span className="text-xl">💘</span>
+          Matches
+        </button>
+        <button
+          onClick={() => navigate('/shopping')}
+          className="flex flex-col items-center gap-1 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] py-4 text-xs font-medium text-[var(--color-ink)]"
+        >
+          <span className="text-xl">🛒</span>
+          List
+        </button>
+      </div>
+
       <Card className="mb-6 grid grid-cols-2 gap-3">
         <div>
           <label className="mb-1 block text-[10px] uppercase text-[var(--color-muted)]">

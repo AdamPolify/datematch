@@ -280,11 +280,11 @@ export default function Onboarding() {
         )}
 
         {stepName === 'stat' && (
-          <div className="flex flex-col items-center">
+          <div className="flex h-full flex-col items-center justify-center">
             <img
               src="onboarding/stopwatch-23.png"
               alt=""
-              className="mb-10 mt-2 w-[260px] drop-shadow-xl"
+              className="mb-10 w-[320px] max-w-[80vw] drop-shadow-xl"
             />
             <h1
               className="text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
@@ -299,19 +299,19 @@ export default function Onboarding() {
         )}
 
         {stepName === 'feature1' && (
-          <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col items-center justify-center">
             <h1
               className="mb-10 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
               style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
             >
               Swipe through your best picks
             </h1>
-            <div className="relative mx-auto h-[300px] w-[220px]">
-              <div className="absolute inset-x-4 top-4 h-full rounded-[32px] bg-white/50" />
-              <div className="absolute inset-x-2 top-2 h-full rounded-[32px] bg-white/70" />
+            <div className="relative mx-auto h-[420px] w-[300px]">
+              <div className="absolute inset-x-6 top-6 h-full rounded-[32px] bg-white/50" />
+              <div className="absolute inset-x-3 top-3 h-full rounded-[32px] bg-white/70" />
               <motion.div
                 className="absolute inset-0 flex items-center justify-center rounded-[32px] bg-white p-6 shadow-[0_11px_20px_-4px_rgba(0,0,0,0.35)]"
-                animate={{ x: [0, -80, 0, 80, 0], rotate: [0, -12, 0, 12, 0] }}
+                animate={{ x: [0, -100, 0, 100, 0], rotate: [0, -12, 0, 12, 0] }}
                 transition={{
                   duration: 4.5,
                   repeat: Infinity,
@@ -320,7 +320,7 @@ export default function Onboarding() {
                 }}
               >
                 <p
-                  className="text-center text-2xl font-black leading-tight tracking-[-0.96px] text-black"
+                  className="text-center text-3xl font-black leading-tight tracking-[-0.96px] text-black"
                   style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
                 >
                   {foods[0]?.title ?? 'Homemade pasta al limone'}
@@ -331,14 +331,14 @@ export default function Onboarding() {
         )}
 
         {stepName === 'feature2' && (
-          <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col items-center justify-center">
             <h1
               className="mb-8 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
               style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
             >
               Find a match with your partner
             </h1>
-            <div className="relative mx-auto h-[300px] w-[260px]">
+            <div className="relative mx-auto h-[420px] w-[300px]">
               <div className="absolute inset-0 overflow-hidden rounded-[36px] shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
                 {foods[0]?.image?.startsWith('http') ? (
                   <img
@@ -378,14 +378,14 @@ export default function Onboarding() {
         )}
 
         {stepName === 'social' && (
-          <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col items-center justify-center">
             <h1
               className="mb-8 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
               style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
             >
               Create a full plan for the night
             </h1>
-            <div className="mx-auto flex w-full max-w-[300px] flex-col items-center">
+            <div className="mx-auto flex w-full max-w-[320px] flex-col items-center">
               <StackCard
                 label="Food"
                 title={foods[0]?.title ?? 'Homemade pasta al limone'}

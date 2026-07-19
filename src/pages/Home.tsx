@@ -210,7 +210,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col px-4 pt-5">
+    <div className="flex min-h-0 flex-1 flex-col px-4 pt-5">
       <div className="flex items-center justify-between">
         <h1
           className="text-[32px] font-black leading-none tracking-[-1.28px] text-[var(--color-ink)]"
@@ -246,17 +246,17 @@ export default function Home() {
         })}
       </div>
 
-      <div className="flex flex-1 flex-col justify-center py-6">
+      <div className="flex min-h-0 flex-1 flex-col pt-3">
         {deck.length > 0 ? (
           <>
-            <p className="mb-4 text-center text-sm text-[var(--color-muted)]">
+            <p className="mb-2 shrink-0 text-center text-xs text-[var(--color-muted)]">
               Step {session.stageIndex + 1} of {STAGES.length} — pick the{' '}
               {stage.label.toLowerCase()}
             </p>
             <SwipeDeck cards={deck} onSwipe={handleSwipe} />
           </>
         ) : (
-          <div className="flex flex-col items-center gap-4 text-center">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
             <div className="text-5xl">✨</div>
             <h2 className="text-xl font-bold text-[var(--color-ink)]">
               No more {stage.label.toLowerCase()} options
@@ -315,7 +315,7 @@ function TonightsSettings({
   >(null)
 
   return (
-    <div className="flex min-h-svh flex-col px-5 pb-8 pt-6">
+    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pb-8 pt-6">
       <h1 className="mb-1 text-2xl font-bold text-[var(--color-ink)]">
         What are we feeling tonight?
       </h1>
