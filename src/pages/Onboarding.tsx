@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import { useApp } from '../store/AppContext'
 import {
   STREAMING_SERVICES,
@@ -15,6 +16,7 @@ import {
 } from '../data/options'
 import { COUNTRIES } from '../data/countries'
 import { PLATFORM_STYLE } from '../data/platformStyles'
+import { foods, movies, snacks, drinks } from '../data'
 import type { Preferences } from '../types'
 
 const STEPS = [
@@ -50,7 +52,7 @@ function DotProgress({ index, total }: { index: number; total: number }) {
           key={i}
           className={clsx(
             'h-1.5 rounded-full transition-all',
-            i === index ? 'w-5 bg-white' : 'w-1.5 bg-white/25',
+            i === index ? 'w-5 bg-black' : 'w-1.5 bg-black/20',
           )}
         />
       ))}
@@ -71,7 +73,7 @@ function OnboardButton({
     <button
       onClick={onClick}
       className={clsx(
-        'w-full rounded-full bg-gradient-to-b from-white to-[#f2e4e6] px-6 py-4 text-center font-semibold text-[#2a0a12] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform active:scale-[0.98]',
+        'w-full rounded-full bg-white/70 px-6 py-4 text-center font-bold text-black shadow-[inset_0_0_38px_white,inset_0_0_11px_#edc8f9] backdrop-blur transition-transform active:scale-[0.98]',
         className,
       )}
     >
@@ -85,7 +87,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
     <button
       onClick={onClick}
       aria-label="Back"
-      className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white"
+      className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black"
     >
       ←
     </button>
@@ -109,7 +111,7 @@ function DarkChip({
         'rounded-full border px-3.5 py-2 text-sm font-medium transition-colors',
         selected
           ? 'border-transparent bg-gradient-to-r from-[var(--color-hot-pink)] to-[var(--color-warm-orange)] text-white'
-          : 'border-white/15 bg-white/5 text-white/70',
+          : 'border-black/10 bg-white/40 text-black/70',
       )}
     >
       {children}
@@ -122,28 +124,39 @@ function DarkInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
     <input
       {...props}
       className={clsx(
-        'w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-[var(--color-hot-pink)]',
+        'w-full rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-black placeholder:text-black/35 focus:outline-none focus:ring-2 focus:ring-[var(--color-hot-pink)]',
         props.className,
       )}
     />
   )
 }
 
-function FeatureRow({
-  icon,
+function StackCard({
+  label,
   title,
-  desc,
+  icon,
+  style,
 }: {
-  icon: string
+  label: string
   title: string
-  desc: string
+  icon: string
+  style?: React.CSSProperties
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-2xl bg-white/8 p-4">
-      <span className="text-2xl">{icon}</span>
-      <div>
-        <p className="font-semibold text-white">{title}</p>
-        <p className="text-sm text-white/60">{desc}</p>
+    <div
+      className="relative w-full shrink-0 rounded-[24px] bg-white p-4 shadow-[0_-16px_45px_-2px_rgba(152,0,55,0.1)]"
+      style={style}
+    >
+      <div className="flex items-center gap-3">
+        <span className="text-xl">{icon}</span>
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-wide text-black/40">
+            {label}
+          </p>
+          <p className="text-base font-extrabold tracking-tight text-black">
+            {title}
+          </p>
+        </div>
       </div>
     </div>
   )
@@ -193,13 +206,13 @@ export default function Onboarding() {
   return (
     <div
       className={clsx(
-        'relative flex min-h-svh flex-col px-6 pb-8 pt-6 text-white',
+        'relative flex min-h-svh flex-col px-6 pb-8 pt-6 text-black',
         isWelcome && 'overflow-hidden',
       )}
       style={{
         background: isWelcome
           ? 'linear-gradient(225deg, #FF8AA5 18.5%, #ECCCFF 48.3%, #B5DFFF 49.4%, #82BBFF 81.5%)'
-          : 'radial-gradient(circle at 20% 0%, rgba(255,91,87,0.25), transparent 55%), radial-gradient(circle at 90% 10%, rgba(255,59,107,0.2), transparent 50%), linear-gradient(180deg, #2a0a12 0%, #1c0509 55%, #120306 100%)',
+          : 'linear-gradient(180deg, #fcbddb 5%, #ff95bd 47.4%, #ff82a8 100%)',
       }}
     >
       {step > 0 && stepName !== 'done' && <BackButton onClick={back} />}
@@ -267,85 +280,136 @@ export default function Onboarding() {
         )}
 
         {stepName === 'stat' && (
-          <div>
-            <h1 className="mb-8 text-3xl font-bold leading-tight">
-              Most couples spend longer deciding than actually watching.
+          <div className="flex flex-col items-center">
+            <img
+              src="onboarding/stopwatch-23.png"
+              alt=""
+              className="mb-10 mt-2 w-[260px] drop-shadow-xl"
+            />
+            <h1
+              className="text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
+              style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+            >
+              Most couples spend longer deciding than actually watching
             </h1>
-            <div className="mb-6 flex flex-col items-center rounded-3xl bg-white/8 py-10">
-              <p className="text-6xl font-extrabold text-[var(--color-hot-pink)]">23 min</p>
-              <p className="mt-2 text-sm text-white/50">
-                average time couples spend arguing over what to watch
-              </p>
-            </div>
-            <p className="text-center text-white/50">
-              That's 23 minutes you could already be on the couch.
+            <p className="mt-4 text-center text-sm font-bold text-black/70">
+              That's 23 minutes you could already be on the couch
             </p>
           </div>
         )}
 
         {stepName === 'feature1' && (
-          <div>
-            <h1 className="mb-8 text-3xl font-bold leading-tight">
-              We turn "I don't know, you pick" into a match.
+          <div className="flex h-full flex-col">
+            <h1
+              className="mb-10 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
+              style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+            >
+              Swipe through your best picks
             </h1>
-            <div className="space-y-3">
-              <FeatureRow
-                icon="🍽️"
-                title="Food you both actually want"
-                desc="Real restaurants, takeout, and recipes — not just a list."
-              />
-              <FeatureRow
-                icon="🎬"
-                title="Real movies, real posters"
-                desc="Trending picks from what's actually streaming for you."
-              />
-              <FeatureRow
-                icon="💕"
-                title="Only matches when you both agree"
-                desc="Swipe together. No compromise, no arguing."
-              />
+            <div className="relative mx-auto h-[300px] w-[220px]">
+              <div className="absolute inset-x-4 top-4 h-full rounded-[32px] bg-white/50" />
+              <div className="absolute inset-x-2 top-2 h-full rounded-[32px] bg-white/70" />
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center rounded-[32px] bg-white p-6 shadow-[0_11px_20px_-4px_rgba(0,0,0,0.35)]"
+                animate={{ x: [0, -80, 0, 80, 0], rotate: [0, -12, 0, 12, 0] }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  times: [0, 0.25, 0.5, 0.75, 1],
+                  ease: 'easeInOut',
+                }}
+              >
+                <p
+                  className="text-center text-2xl font-black leading-tight tracking-[-0.96px] text-black"
+                  style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+                >
+                  {foods[0]?.title ?? 'Homemade pasta al limone'}
+                </p>
+              </motion.div>
             </div>
           </div>
         )}
 
         {stepName === 'feature2' && (
-          <div>
-            <h1 className="mb-8 text-3xl font-bold leading-tight">
-              And we make the whole night easy.
+          <div className="flex h-full flex-col">
+            <h1
+              className="mb-8 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
+              style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+            >
+              Find a match with your partner
             </h1>
-            <div className="space-y-3">
-              {[
-                'Food, movie, snacks & drinks in one swipe session',
-                'A full date-night plan, built automatically',
-                'A shopping list generated for you',
-                'Tonight-only settings, no need to change your profile',
-              ].map((line) => (
-                <div key={line} className="flex items-center gap-3 rounded-2xl bg-white/8 p-4">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-hot-pink)] text-xs text-white">
-                    ✓
-                  </span>
-                  <p className="text-sm font-medium text-white">{line}</p>
-                </div>
-              ))}
+            <div className="relative mx-auto h-[300px] w-[260px]">
+              <div className="absolute inset-0 overflow-hidden rounded-[36px] shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+                {foods[0]?.image?.startsWith('http') ? (
+                  <img
+                    src={foods[0].image}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="h-full w-full bg-gradient-to-b from-[var(--color-surface-2)] to-[var(--color-base-2)]" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-transparent" />
+                <p
+                  className="absolute inset-x-4 top-16 text-center text-2xl font-black leading-tight tracking-[-0.96px] text-white"
+                  style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+                >
+                  {foods[0]?.title ?? 'Homemade pasta al limone'}
+                </p>
+              </div>
+              <img
+                src="onboarding/avatar-a.png"
+                alt=""
+                className="absolute -left-3 top-2 h-14 w-14 rounded-full object-cover shadow-[0_4px_10px_rgba(0,0,0,0.25)]"
+              />
+              <img
+                src="onboarding/avatar-b.jpg"
+                alt=""
+                className="absolute -right-3 bottom-2 h-12 w-12 rounded-full object-cover shadow-[0_4px_10px_rgba(0,0,0,0.25)]"
+              />
+              <span className="absolute -right-4 top-16 rotate-12 text-3xl drop-shadow-lg">
+                💕
+              </span>
+              <span className="absolute -left-4 bottom-16 -rotate-[26deg] text-2xl drop-shadow-lg">
+                🩷
+              </span>
             </div>
           </div>
         )}
 
         {stepName === 'social' && (
-          <div className="flex h-full flex-col items-center justify-center text-center">
-            <p className="mb-3 bg-gradient-to-r from-[var(--color-hot-pink)] to-[var(--color-warm-orange)] bg-clip-text text-6xl font-extrabold text-transparent">
-              4.9
-            </p>
-            <p className="mb-8 text-2xl tracking-widest text-[var(--color-gold)]">★★★★★</p>
-            <p className="mb-8 text-xl font-semibold text-white">
-              Couples everywhere are done arguing about date night.
-            </p>
-            <div className="w-full rounded-2xl bg-white/8 p-5 text-left">
-              <p className="text-sm italic text-white/80">
-                "We used to spend 20 minutes scrolling Netflix in silence. Now we just swipe —
-                whoever matches first, wins date night."
-              </p>
-              <p className="mt-3 text-xs font-semibold text-white/50">— Sam &amp; Alex</p>
+          <div className="flex h-full flex-col">
+            <h1
+              className="mb-8 text-center text-[32px] font-black leading-[1.15] tracking-[-1.28px] text-black"
+              style={{ fontFamily: "'Nunito','Poppins',sans-serif" }}
+            >
+              Create a full plan for the night
+            </h1>
+            <div className="mx-auto flex w-full max-w-[300px] flex-col items-center">
+              <StackCard
+                label="Food"
+                title={foods[0]?.title ?? 'Homemade pasta al limone'}
+                icon="🍽️"
+                style={{ marginBottom: -48, zIndex: 1 }}
+              />
+              <StackCard
+                label="Movie"
+                title={movies[0]?.title ?? 'Movie night'}
+                icon="🎬"
+                style={{ marginBottom: -48, zIndex: 2 }}
+              />
+              <StackCard
+                label="Snack"
+                title={snacks[0]?.title ?? 'Sweet treat'}
+                icon="🍿"
+                style={{ marginBottom: -48, zIndex: 3 }}
+              />
+              <StackCard
+                label="Drink"
+                title={drinks[0]?.title ?? 'Something to sip'}
+                icon="🍹"
+                style={{ zIndex: 4 }}
+              />
             </div>
           </div>
         )}
@@ -353,8 +417,8 @@ export default function Onboarding() {
         {stepName === 'names' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Let's set up your couple</h1>
-            <p className="mb-6 text-white/50">A little about you two.</p>
-            <label className="mb-1 block text-sm font-medium text-white/50">
+            <p className="mb-6 text-black/50">A little about you two.</p>
+            <label className="mb-1 block text-sm font-medium text-black/50">
               Couple name
             </label>
             <DarkInput
@@ -363,7 +427,7 @@ export default function Onboarding() {
               placeholder="e.g. Adam & Sam"
               className="mb-4"
             />
-            <label className="mb-1 block text-sm font-medium text-white/50">
+            <label className="mb-1 block text-sm font-medium text-black/50">
               Your name
             </label>
             <DarkInput
@@ -377,7 +441,7 @@ export default function Onboarding() {
         {stepName === 'country' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Where are you based?</h1>
-            <p className="mb-6 text-white/50">
+            <p className="mb-6 text-black/50">
               So we can show you movies actually streaming near you.
             </p>
             <DarkInput
@@ -395,7 +459,7 @@ export default function Onboarding() {
                     'flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-colors',
                     profile.country === c.name
                       ? 'bg-gradient-to-r from-[var(--color-hot-pink)] to-[var(--color-warm-orange)] text-white'
-                      : 'bg-white/5 text-white/70',
+                      : 'bg-white/40 text-black/70',
                   )}
                 >
                   <span className="text-xl">{c.flag}</span>
@@ -412,18 +476,18 @@ export default function Onboarding() {
         {stepName === 'invite' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Invite your partner</h1>
-            <p className="mb-6 text-white/50">
+            <p className="mb-6 text-black/50">
               Share this code, or simulate them joining for now.
             </p>
-            <div className="mb-4 rounded-2xl border border-dashed border-[var(--color-hot-pink)] bg-white/5 px-4 py-6 text-center">
-              <p className="mb-1 text-xs uppercase tracking-widest text-white/50">
+            <div className="mb-4 rounded-2xl border border-dashed border-[var(--color-hot-pink)] bg-white/40 px-4 py-6 text-center">
+              <p className="mb-1 text-xs uppercase tracking-widest text-black/50">
                 Invite code
               </p>
               <p className="text-3xl font-bold tracking-[0.3em] text-[var(--color-hot-pink)]">
                 {profile.inviteCode}
               </p>
             </div>
-            <label className="mb-1 block text-sm font-medium text-white/50">
+            <label className="mb-1 block text-sm font-medium text-black/50">
               Partner's name
             </label>
             <DarkInput
@@ -435,7 +499,7 @@ export default function Onboarding() {
             {!profile.partners.B.joined ? (
               <button
                 onClick={() => joinPartner('B')}
-                className="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-center font-medium text-white"
+                className="w-full rounded-2xl border border-black/10 bg-white/40 px-5 py-3.5 text-center font-medium text-black"
               >
                 {profile.partners.B.name || 'Partner'} joined with the code ✓
               </button>
@@ -450,7 +514,7 @@ export default function Onboarding() {
         {stepName === 'streaming' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Streaming services</h1>
-            <p className="mb-6 text-white/50">
+            <p className="mb-6 text-black/50">
               Which do you both have access to? Choose all that apply.
             </p>
             <div className="grid grid-cols-3 gap-3">
@@ -482,7 +546,7 @@ export default function Onboarding() {
                     >
                       {style.label || s}
                     </span>
-                    <span className="px-1 text-[9px] leading-tight text-white/60">
+                    <span className="px-1 text-[9px] leading-tight text-black/60">
                       {s}
                     </span>
                   </button>
@@ -495,7 +559,7 @@ export default function Onboarding() {
         {stepName === 'cuisines' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Favorite cuisines</h1>
-            <p className="mb-6 text-white/50">Pick everything you both love.</p>
+            <p className="mb-6 text-black/50">Pick everything you both love.</p>
             <div className="flex flex-wrap gap-2">
               {CUISINES.map((c) => (
                 <DarkChip
@@ -517,7 +581,7 @@ export default function Onboarding() {
         {stepName === 'dietary' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Dietary needs</h1>
-            <p className="mb-6 text-white/50">
+            <p className="mb-6 text-black/50">
               Restrictions, allergies, and foods to avoid.
             </p>
             <div className="mb-6 flex flex-wrap gap-2">
@@ -535,7 +599,7 @@ export default function Onboarding() {
                 </DarkChip>
               ))}
             </div>
-            <label className="mb-1 block text-sm font-medium text-white/50">
+            <label className="mb-1 block text-sm font-medium text-black/50">
               Disliked foods
             </label>
             <div className="mb-2 flex gap-2">
@@ -568,7 +632,7 @@ export default function Onboarding() {
                     setDislikedFoodInput('')
                   }
                 }}
-                className="w-auto shrink-0 rounded-2xl border border-white/15 bg-white/5 px-4 py-3 font-medium text-white"
+                className="w-auto shrink-0 rounded-2xl border border-black/10 bg-white/40 px-4 py-3 font-medium text-black"
               >
                 Add
               </button>
@@ -596,7 +660,7 @@ export default function Onboarding() {
         {stepName === 'snacks' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Snack preferences</h1>
-            <p className="mb-6 text-white/50">What do you two reach for?</p>
+            <p className="mb-6 text-black/50">What do you two reach for?</p>
             <div className="flex flex-wrap gap-2">
               {SNACK_PREFERENCES.map((s) => (
                 <DarkChip
@@ -618,7 +682,7 @@ export default function Onboarding() {
         {stepName === 'genres' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Movies & shows</h1>
-            <p className="mb-4 text-white/50">Genres you both enjoy.</p>
+            <p className="mb-4 text-black/50">Genres you both enjoy.</p>
             <div className="mb-6 flex flex-wrap gap-2">
               {GENRES.map((g) => (
                 <DarkChip
@@ -637,7 +701,7 @@ export default function Onboarding() {
                 </DarkChip>
               ))}
             </div>
-            <p className="mb-3 text-sm font-medium text-white/50">
+            <p className="mb-3 text-sm font-medium text-black/50">
               Genres to avoid
             </p>
             <div className="flex flex-wrap gap-2">
@@ -664,8 +728,8 @@ export default function Onboarding() {
         {stepName === 'lifestyle' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">A few last things</h1>
-            <p className="mb-4 text-white/50">Budget, cooking, and drinks.</p>
-            <p className="mb-2 text-sm font-medium text-white/50">
+            <p className="mb-4 text-black/50">Budget, cooking, and drinks.</p>
+            <p className="mb-2 text-sm font-medium text-black/50">
               Typical budget
             </p>
             <div className="mb-5 flex flex-wrap gap-2">
@@ -679,7 +743,7 @@ export default function Onboarding() {
                 </DarkChip>
               ))}
             </div>
-            <p className="mb-2 text-sm font-medium text-white/50">
+            <p className="mb-2 text-sm font-medium text-black/50">
               Cooking effort
             </p>
             <div className="mb-5 flex flex-wrap gap-2">
@@ -693,7 +757,7 @@ export default function Onboarding() {
                 </DarkChip>
               ))}
             </div>
-            <p className="mb-2 text-sm font-medium text-white/50">Alcohol</p>
+            <p className="mb-2 text-sm font-medium text-black/50">Alcohol</p>
             <div className="flex flex-wrap gap-2">
               {(['yes', 'no', 'sometimes'] as const).map((a) => (
                 <DarkChip
@@ -711,7 +775,7 @@ export default function Onboarding() {
         {stepName === 'moods' && (
           <div>
             <h1 className="mb-1 text-2xl font-bold">Date-night moods</h1>
-            <p className="mb-6 text-white/50">
+            <p className="mb-6 text-black/50">
               What vibes are you usually into?
             </p>
             <div className="flex flex-wrap gap-2">
@@ -732,7 +796,7 @@ export default function Onboarding() {
           <div className="flex h-full flex-col items-center justify-center text-center">
             <div className="mb-6 text-6xl">🎉</div>
             <h1 className="mb-2 text-3xl font-bold">You're all set</h1>
-            <p className="mb-10 text-white/50">
+            <p className="mb-10 text-black/50">
               Date night, decided. Let's find something you both want.
             </p>
           </div>
@@ -751,7 +815,7 @@ export default function Onboarding() {
       <div
         className={clsx(
           'relative mx-auto mt-4 h-1 w-32 rounded-full',
-          isWelcome ? 'bg-black/25' : 'bg-white/20',
+          'bg-black/25',
         )}
       />
     </div>
